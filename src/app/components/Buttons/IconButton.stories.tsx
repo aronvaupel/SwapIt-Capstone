@@ -8,17 +8,7 @@ export default {
   component: IconButton,
   argTypes: {
     iconType: {
-      options: [
-        'swap',
-        'add',
-        'call',
-        'mail',
-        'next',
-        'previous',
-        'home',
-        'trashbin',
-        'handshake',
-      ],
+      options: ['swap', 'call', 'mail', 'next', 'previous', 'trashbin'],
       control: { type: 'select' },
     },
   },
@@ -29,12 +19,6 @@ const Template: Story<IconButtonProps> = (args) => <IconButton {...args} />;
 export const SwapIcon = Template.bind({});
 SwapIcon.args = {
   iconType: 'swap',
-  isActive: true,
-};
-
-export const AddIcon = Template.bind({});
-AddIcon.args = {
-  iconType: 'add',
   isActive: true,
 };
 
@@ -56,21 +40,9 @@ TrashbinIcon.args = {
   isActive: true,
 };
 
-export const HandshakeIcon = Template.bind({});
-HandshakeIcon.args = {
-  iconType: 'handshake',
-  isActive: true,
-};
-
 export const NextIcon = Template.bind({});
 NextIcon.args = {
   iconType: 'next',
-  isActive: true,
-};
-
-export const HomeIcon = Template.bind({});
-HomeIcon.args = {
-  iconType: 'home',
   isActive: true,
 };
 
