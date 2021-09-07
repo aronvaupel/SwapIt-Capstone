@@ -8,7 +8,7 @@ import HomeIcon from '../assets/HomeIcon';
 
 export type IconLinkProps = {
   iconType: 'add' | 'handshake' | 'home';
-  onClick: () => void;
+  handleClick: () => void;
   isActive: boolean;
   href?: string;
 };
@@ -16,7 +16,7 @@ export type IconLinkProps = {
 const IconLink = ({
   isActive,
   iconType,
-  onClick,
+  handleClick,
 }: IconLinkProps): JSX.Element => {
   const active = {
     fill: 'var(--clr-accent)',
@@ -35,7 +35,7 @@ const IconLink = ({
   };
 
   return (
-    <a className={styles.Link} onClick={onClick}>
+    <a className={styles.Link} onClick={handleClick}>
       {iconStateMap[iconType]}
     </a>
   );

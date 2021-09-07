@@ -9,14 +9,14 @@ import TrashbinIcon from '../assets/TrashbinIcon';
 
 export type IconButtonProps = {
   iconType: 'swap' | 'call' | 'mail' | 'next' | 'previous' | 'trashbin';
-  onClick: () => void;
+  handleClick: () => void;
   isActive: boolean;
 };
 
 const IconButton = ({
   isActive,
   iconType,
-  onClick,
+  handleClick,
 }: IconButtonProps): JSX.Element => {
   const active = {
     fill: 'var(--clr-accent)',
@@ -38,7 +38,7 @@ const IconButton = ({
   };
 
   return (
-    <button className={styles.button} onClick={onClick}>
+    <button className={styles.button} onClick={handleClick}>
       {iconStateMap[iconType]}
     </button>
   );
