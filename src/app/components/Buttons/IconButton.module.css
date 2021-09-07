@@ -1,3 +1,5 @@
 .button {
-  color: #000;
+  background: none;
+  border: none;
+  text-decoration: none;
 }
