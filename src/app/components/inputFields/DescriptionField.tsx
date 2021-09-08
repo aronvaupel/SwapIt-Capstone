@@ -1,21 +1,24 @@
 import React from 'react';
-import styles from './Input.module.css';
+import styles from './DescriptionField.module.css';
 
-export type InputProps = {
+export type DescriptionFieldProps = {
   placeholder: string;
   id: string;
   label: string;
 };
 
-const Input = ({ placeholder, id, label }: InputProps): JSX.Element => {
+const DescriptionField = ({
+  placeholder,
+  id,
+  label,
+}: DescriptionFieldProps): JSX.Element => {
   return (
     <div className="wrapper">
       <label htmlFor={id} className={styles.label}>
         {label}
       </label>
-      <input
-        type="text"
-        className={styles.inputSmall}
+      <textarea
+        className={styles.DescriptionField}
         required
         placeholder={placeholder}
         id={id}
@@ -24,4 +27,4 @@ const Input = ({ placeholder, id, label }: InputProps): JSX.Element => {
   );
 };
 
-export default Input;
+export default DescriptionField;
