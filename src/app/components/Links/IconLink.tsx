@@ -1,8 +1,6 @@
 import React from 'react';
 import styles from './IconLink.module.css';
-
 import AddIcon from '../assets/AddIcon';
-
 import HandshakeIcon from '../assets/HandshakeIcon';
 import HomeIcon from '../assets/HomeIcon';
 
@@ -35,9 +33,9 @@ const IconLink = ({
   };
 
   return (
-    <a className={styles.Link} onClick={onClick}>
-      {iconStateMap[iconType]}
-    </a>
+    <div className={isActive ? styles.link : styles.linkInactive}>
+      <a onClick={onClick}>{iconStateMap[iconType]}</a>
+    </div>
   );
 };
 
