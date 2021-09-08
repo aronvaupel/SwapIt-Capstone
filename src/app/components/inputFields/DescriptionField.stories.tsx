@@ -6,7 +6,6 @@ import type { DescriptionFieldProps } from './DescriptionField';
 export default {
   title: 'Component/DescriptionField',
   component: DescriptionField,
-  argTypes: {},
 };
 
 const Template: Story<DescriptionFieldProps> = (args) => (

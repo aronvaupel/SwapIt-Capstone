@@ -6,7 +6,6 @@ import type { InputProps } from './Input';
 export default {
   title: 'Component/Input',
   component: Input,
-  argTypes: {},
 };
 
 const Template: Story<InputProps> = (args) => <Input {...args} />;
