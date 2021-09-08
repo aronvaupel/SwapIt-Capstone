@@ -7,18 +7,11 @@ export type CounterProps = {
 };
 
 const Counter = ({ counterType }: CounterProps): JSX.Element => {
-  const counterTypeMap = {
-    1: '1',
-    2: '2',
-    3: '3',
-    4: '4',
-    5: '5',
-    '5+': '5+',
-    '?': '?',
-    checked: <CheckedIcon />,
-  };
-
-  return <div className={styles.Counter}>{counterTypeMap[counterType]}</div>;
+  return (
+    <div className={styles.Counter}>
+      {counterType !== 'checked' ? counterType : <CheckedIcon />}
+    </div>
+  );
 };
 
 export default Counter;
