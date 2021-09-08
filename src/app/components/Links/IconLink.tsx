@@ -15,6 +15,7 @@ const IconLink = ({
   isActive,
   iconType,
   onClick,
+  href,
 }: IconLinkProps): JSX.Element => {
   const active = {
     fill: 'var(--clr-accent)',
@@ -34,7 +35,9 @@ const IconLink = ({
 
   return (
     <div className={isActive ? styles.link : styles.linkInactive}>
-      <a onClick={onClick}>{iconStateMap[iconType]}</a>
+      <a href={href} onClick={onClick}>
+        {iconStateMap[iconType]}
+      </a>
     </div>
   );
 };
