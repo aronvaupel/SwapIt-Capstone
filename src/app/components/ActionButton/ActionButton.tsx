@@ -4,7 +4,7 @@ import styles from './ActionButton.module.css';
 export type ActionButtonProps = {
   value: 'Submit' | 'Upload photo';
   onClick: () => void;
-  type: 'submit' | 'button' | 'reset' | undefined;
+  type?: 'submit' | 'button';
   isActive?: boolean;
 };
 
@@ -17,7 +17,7 @@ const ActionButton = ({
   return (
     <div className={styles.ActionButtonWrapper}>
       <button
-        className={isActive ? styles.ActionButton : styles.ActionButtonInactive}
+        className={`${styles.button} ${isActive && styles.active}`}
         onClick={onClick}
         type={type}
       >
