@@ -1,23 +1,16 @@
 import React from 'react';
 import styles from './IconLink.module.css';
-
 import AddIcon from '../assets/AddIcon';
-
 import HandshakeIcon from '../assets/HandshakeIcon';
 import HomeIcon from '../assets/HomeIcon';
 
 export type IconLinkProps = {
   iconType: 'add' | 'handshake' | 'home';
-  onClick: () => void;
   isActive: boolean;
   href?: string;
 };
 
-const IconLink = ({
-  isActive,
-  iconType,
-  onClick,
-}: IconLinkProps): JSX.Element => {
+const IconLink = ({ isActive, iconType, href }: IconLinkProps): JSX.Element => {
   const active = {
     fill: 'var(--clr-accent)',
     stroke: 'var(--clr-accent)',
@@ -35,9 +28,9 @@ const IconLink = ({
   };
 
   return (
-    <a className={styles.Link} onClick={onClick}>
-      {iconStateMap[iconType]}
-    </a>
+    <div className={isActive ? styles.link : styles.linkInactive}>
+      <a href={href}>{iconStateMap[iconType]}</a>
+    </div>
   );
 };
 
