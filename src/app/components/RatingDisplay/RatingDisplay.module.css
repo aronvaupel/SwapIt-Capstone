@@ -1,14 +1,15 @@
 .ratingDisplayWrapper {
-  height: 25rem;
+  height: 30vh;
   padding: 10% 0 10% 0;
   display: flex;
   flex-direction: column;
   width: 1.5rem;
-  justify-content: center;
+  align-items: center;
 }
 
 .icon {
   height: 10%;
+  margin-bottom: 0.5rem;
 }
 
 .indicator {
@@ -17,20 +18,17 @@
   border: 1px solid var(--clr-text-secondary);
   background-color: var(--clr-background);
   border-radius: 3px;
-  padding: 2px;
+  padding: 0.1rem;
 }
 
 .low {
   background-color: var(--clr-low);
-  border: 1px solid var(--clr-text-secondary);
 }
 
 .medium {
   background-color: var(--clr-medium);
-  border: 1px solid var(--clr-text-secondary);
 }
 
 .high {
   background-color: var(--clr-high);
-  border: 1px solid var(--clr-text-secondary);
 }
