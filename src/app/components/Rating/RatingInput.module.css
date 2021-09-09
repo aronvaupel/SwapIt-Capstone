@@ -1,0 +1,51 @@
+.ratingWrapper {
+  display: block;
+}
+
+.ratingBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border: 1px solid var(--clr-text-secondary);
+  border-radius: 3px;
+  padding: 0.5rem;
+}
+.headlineWrapper {
+  height: auto;
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+  padding: 0 0 0.25rem 1rem;
+}
+.rating {
+  font-size: 0.5rem;
+  text-align: center;
+  width: 20%;
+}
+
+input[type='radio'] {
+  display: none;
+}
+
+.low {
+  background-color: var(--clr-low);
+}
+
+.medium {
+  background-color: var(--clr-medium);
+}
+
+.high {
+  background-color: var(--clr-high);
+}
+.neutral {
+  background-color: var(--clr-background);
+}
+
+.indicator {
+  width: 96%;
+  height: 0.8rem;
+  border: 1px solid var(--clr-text-secondary);
+  border-radius: 3px;
+  padding: 2%;
+}
