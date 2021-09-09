@@ -1,20 +1,22 @@
 import React from 'react';
 import styles from './LogIn-SignIn-Link.module.css';
+import { BrowserRouter as Switch, Route, Link } from 'react-router-dom';
 
 export type LogInSignInLinkProps = {
-  href: string;
+  url: string;
   value: 'Log in' | 'Sign in';
 };
 
-const LogInSignInLink = ({
-  href,
-  value,
-}: LogInSignInLinkProps): JSX.Element => {
+const LogInSignInLink = ({ value, url }: LogInSignInLinkProps): JSX.Element => {
   return (
-    <div className={styles.LogInSignInLinkWrapper}>
-      <a className={styles.LogInSignInLink} href={href}>
-        {value}
-      </a>
+    <div className={styles.wrapper}>
+      <Route>
+        <Switch>
+          <Link to={url} className={styles.Link}>
+            {value}
+          </Link>
+        </Switch>
+      </Route>
     </div>
   );
 };
