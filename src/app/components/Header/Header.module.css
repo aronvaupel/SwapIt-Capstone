@@ -1,0 +1,14 @@
+.header {
+  background-color: var(--clr-background);
+  border: 1px solid var(--clr-text-secondary);
+  box-shadow: 0 2px 2px 2px var(--clr-text-secondary);
+  margin: 0;
+  height: 8.12vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
