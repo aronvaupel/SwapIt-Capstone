@@ -1,0 +1,21 @@
+.inputSmall {
+  border: solid 1px var(--clr-text-secondary);
+  border-radius: 3px;
+  height: 1.6rem;
+  background-color: var(--clr-background);
+  font-size: 1rem;
+  display: block;
+  width: 100%;
+  overflow: auto;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  resize: none;
+  font-family: inherit;
+}
+
+.label {
+  font-size: 0.8rem;
+  display: block;
+}

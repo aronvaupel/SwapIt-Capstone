@@ -1,0 +1,11 @@
+.button {
+  border: none;
+  background: none;
+  text-decoration: none;
+}
+
+.buttonInactive {
+  border: none;
+  background: none;
+  text-decoration: none;
+}

@@ -39,15 +39,3 @@ TrashbinIcon.args = {
   iconType: 'trashbin',
   isActive: true,
 };
-
-export const NextIcon = Template.bind({});
-NextIcon.args = {
-  iconType: 'next',
-  isActive: true,
-};
-
-export const PreviousIcon = Template.bind({});
-PreviousIcon.args = {
-  iconType: 'previous',
-  isActive: true,
-};
