@@ -17,16 +17,14 @@ const Template: Story<mainCardProps> = (args) => <MainCard {...args} />;
 
 export const MainCardLight = Template.bind({});
 MainCardLight.args = {
-  imageSrc:
-    'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+  imageSrc: 'src/app/components/assets/1.jpg',
   ratingValue: 1,
   ratingCondition: 3,
 };
 
 export const MainCardDark = Template.bind({});
 MainCardDark.args = {
-  imageSrc:
-    'https://images.pexels.com/photos/2591990/pexels-photo-2591990.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+  imageSrc: 'src/app/components/assets/4.jpg',
   ratingValue: 4,
   ratingCondition: 5,
 };
