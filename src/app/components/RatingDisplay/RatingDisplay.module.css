@@ -1,0 +1,34 @@
+.ratingDisplayWrapper {
+  height: 100%;
+  padding: 10% 0 10% 0;
+  display: flex;
+  flex-direction: column;
+  width: 1.5rem;
+  align-items: center;
+}
+
+.icon {
+  height: 10%;
+  margin-bottom: 0.5rem;
+}
+
+.indicator {
+  width: 50%;
+  height: 14%;
+  border: 1px solid var(--clr-text-secondary);
+  background-color: var(--clr-background);
+  border-radius: 3px;
+  padding: 0.1rem;
+}
+
+.low {
+  background-color: var(--clr-low);
+}
+
+.medium {
+  background-color: var(--clr-medium);
+}
+
+.high {
+  background-color: var(--clr-high);
+}
