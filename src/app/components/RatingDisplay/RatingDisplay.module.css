@@ -1,5 +1,5 @@
 .ratingDisplayWrapper {
-  height: 30vh;
+  height: 100%;
   padding: 10% 0 10% 0;
   display: flex;
   flex-direction: column;
