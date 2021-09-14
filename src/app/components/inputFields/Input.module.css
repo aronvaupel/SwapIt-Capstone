@@ -1,7 +1,7 @@
 .inputSmall {
   border: solid 1px var(--clr-text-secondary);
   border-radius: 3px;
-  height: 1.6rem;
+  height: 2rem;
   background-color: var(--clr-background);
   font-size: 1rem;
   display: block;
@@ -13,9 +13,11 @@
   box-shadow: none;
   resize: none;
   font-family: inherit;
+  margin-bottom: 0.5rem;
 }
 
 .label {
   font-size: 0.8rem;
   display: block;
+  text-align: start;
 }
