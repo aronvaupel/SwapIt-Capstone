@@ -1,18 +1,21 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import AddPage from './pages/AddPage/AddPage';
+import OptionsPage from './pages/OptionsPage';
+import StartPage from './pages/StartPage/StartPage';
 
 function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/start">
-          <main>Start</main>
+          <StartPage />
         </Route>
         <Route path="/options">
-          <main>pls select an option</main>
+          <OptionsPage />
         </Route>
         <Route path="/signIn">
-          <main>sign in</main>
+          <h1>signIn</h1>
         </Route>
         <Route path="/logIn">
           <main>Log in</main>
@@ -21,7 +24,7 @@ function App(): JSX.Element {
           <main>Proposals</main>
         </Route>
         <Route path="/add">
-          <main>Add</main>
+          <AddPage />
         </Route>
         <Route path="/">
           <main>Home</main>
