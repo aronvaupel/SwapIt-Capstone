@@ -25,28 +25,32 @@ function AddPage(): JSX.Element {
     <div className={styles.wrapper}>
       <Header />
       <main className={styles.mainWrapper}>
-        <Input
-          label="What do you want to swap?"
-          id="name"
-          placeholder="Enter a name for your item"
-        />
-        <RatingInput
-          type="value"
-          value={valueInput}
-          onValueClick={handleValueClick}
-        />
-        <RatingInput
-          type="condition"
-          value={valueInput}
-          onValueClick={handleValueClick}
-        />
-        <DescriptionField
-          label="Description"
-          placeholder="Enter information about your item"
-          id="description"
-        />
-        <ActionButton value="Upload photo" onClick={handleClickPhoto} />
-        <ActionButton value="Submit" onClick={handleClickSubmit} />
+        <div className={styles.elements}>
+          <Input
+            label="What do you want to swap?"
+            id="name"
+            placeholder="Enter a name for your item"
+          />
+          <RatingInput
+            type="value"
+            value={valueInput}
+            onValueClick={handleValueClick}
+          />
+          <RatingInput
+            type="condition"
+            value={valueInput}
+            onValueClick={handleValueClick}
+          />
+          <DescriptionField
+            label="Description"
+            placeholder="Enter information about your item"
+            id="description"
+          />
+          <ActionButton value="Upload photo" onClick={handleClickPhoto} />
+          <div className={styles.submit}>
+            <ActionButton value="Submit" onClick={handleClickSubmit} />
+          </div>
+        </div>
       </main>
       <Nav />
     </div>
