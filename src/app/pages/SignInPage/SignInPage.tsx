@@ -31,6 +31,12 @@ function SignInPage(): JSX.Element {
   function handleSubmit() {
     console.log('hello');
   }
+
+  const isDisabled =
+    !validUsername || !validPhonenumber || !validEmail || !validPassword
+      ? true
+      : false;
+
   return (
     <div className={styles.wrapper}>
       <Header />
@@ -40,7 +46,7 @@ function SignInPage(): JSX.Element {
             placeholder="Enter username"
             label="Username"
             inputType="text"
-            id="Username"
+            id="username"
             value={username}
             onChange={(value) => setUsername(value)}
           />
@@ -73,18 +79,11 @@ function SignInPage(): JSX.Element {
             value="Submit"
             onClick={handleSubmit}
             type="submit"
-            disabled={
-              !validUsername ||
-              !validPhonenumber ||
-              !validEmail ||
-              !validPassword
-                ? true
-                : false
-            }
+            disabled={isDisabled}
           />
         </form>
       </main>
-      <Nav activeLink="allInactive" />
+      <Nav />
     </div>
   );
 }
