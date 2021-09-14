@@ -1,18 +1,21 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import OptionsPage from './pages/OptionsPage';
+import SignInPage from './pages/SignInPage/SignInPage';
+import StartPage from './pages/StartPage/StartPage';
 
 function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/start">
-          <main>Start</main>
+          <StartPage />
         </Route>
         <Route path="/options">
-          <main>pls select an option</main>
+          <OptionsPage />
         </Route>
         <Route path="/signIn">
-          <main>sign in</main>
+          <SignInPage />
         </Route>
         <Route path="/logIn">
           <main>Log in</main>
