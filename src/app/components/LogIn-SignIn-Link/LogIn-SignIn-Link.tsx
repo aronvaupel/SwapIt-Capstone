@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export type LogInSignInLinkProps = {
   url: string;
-  value: 'Log in' | 'Sign in';
+  value: 'Log in' | 'Sign in' | 'Get started';
 };
 
 const LogInSignInLink = ({ value, url }: LogInSignInLinkProps): JSX.Element => {
