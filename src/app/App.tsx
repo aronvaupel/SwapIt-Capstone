@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import MainPage from './pages/MainPage/MainPage';
 
 function App(): JSX.Element {
   return (
@@ -24,7 +25,7 @@ function App(): JSX.Element {
           <main>Add</main>
         </Route>
         <Route path="/">
-          <main>Home</main>
+          <MainPage />
         </Route>
       </Switch>
     </BrowserRouter>
