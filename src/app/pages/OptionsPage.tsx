@@ -14,7 +14,7 @@ function OptionsPage(): JSX.Element {
           <LogInSignInLink url="/LogIn" value="Log in" />
         </div>
       </main>
-      <Nav activeLink="allInactive" />
+      <Nav />
     </div>
   );
 }
