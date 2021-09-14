@@ -3,7 +3,7 @@ import IconLink from '../Links/IconLink';
 import styles from './Nav.module.css';
 
 export type NavProps = {
-  activeLink: 'home' | 'add' | 'handshake' | 'allInactive';
+  activeLink?: 'home' | 'add' | 'handshake';
 };
 
 const Nav = ({ activeLink }: NavProps): JSX.Element => {

@@ -1,0 +1,33 @@
+.wrapper {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 10% 1fr 10%;
+}
+
+.mainWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.iconWrapper {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 100%;
+  border: 1px solid var(--clr-accent);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swapIcon {
+  fill: var(--clr-accent);
+}
+
+.linkWrapper {
+  padding: 1rem;
+  width: 100%;
+  margin-top: 8rem;
+}
