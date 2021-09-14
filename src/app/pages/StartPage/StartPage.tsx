@@ -26,7 +26,7 @@ function StartPage(): JSX.Element {
           <LogInSignInLink url="/start" value="Get started" />
         </div>
       </main>
-      <Nav activeLink="allInactive" />
+      <Nav />
     </div>
   );
 }
