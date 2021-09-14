@@ -20,7 +20,7 @@ const MatchCard = ({
 }: MatchCardProps): JSX.Element => {
   return (
     <div className={styles.wrapper}>
-      <div className={styles.imageWrapper}>
+      <article className={styles.imageWrapper}>
         <img src={imageSrcOwn} className={styles.image} />
         <img src={imageSrcOther} className={styles.image} />
         <div className={styles.indicator}>
@@ -31,13 +31,13 @@ const MatchCard = ({
             <Counter counterType={type === 'proposal' ? '?' : 'checked'} />
           </div>
         </div>
-      </div>
+      </article>
 
-      <div className={styles.buttonWrapper}>
+      <section className={styles.buttonWrapper}>
         <IconButton iconType="mail" onClick={handleClick} isActive={false} />
         <IconButton iconType="call" onClick={handleClick} isActive={false} />
         <IconButton iconType="trashbin" onClick={handleClick} isActive={true} />
-      </div>
+      </section>
     </div>
   );
 };
