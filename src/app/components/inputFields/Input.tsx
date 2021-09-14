@@ -6,6 +6,8 @@ export type InputProps = {
   id?: string;
   label: string;
   inputType: 'text' | 'password';
+  onChange: (value: string) => void;
+  value: string;
 };
 
 const Input = ({
@@ -13,6 +15,8 @@ const Input = ({
   id,
   label,
   inputType,
+  value,
+  onChange,
 }: InputProps): JSX.Element => {
   return (
     <div className="wrapper">
@@ -20,6 +24,8 @@ const Input = ({
         {label}
       </label>
       <input
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
         type={inputType}
         className={styles.inputSmall}
         required
