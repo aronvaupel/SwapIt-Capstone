@@ -6,7 +6,7 @@ function App(): JSX.Element {
   return (
     <Router>
       <Switch>
-        <Route path="/SignIn">
+        <Route path="/signIn">
           <SignInPage />
         </Route>
       </Switch>
