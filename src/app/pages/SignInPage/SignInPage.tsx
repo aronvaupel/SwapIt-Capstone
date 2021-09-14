@@ -12,30 +12,17 @@ function SignInPage(): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const validUsername = () => {
-    username.length > 3 ? false : true;
-  };
-
-  const validPhonenumber = () => {
-    phoneNumber.length > 3 ? false : true;
-  };
-
-  const validEmail = () => {
-    email.length > 3 ? false : true;
-  };
-
-  const validPassword = () => {
-    password.length > 8 ? false : true;
-  };
+  const validUsername = () => username.length < 3;
+  const validPhonenumber = () => phoneNumber.length < 3;
+  const validEmail = () => email.length < 3;
+  const validPassword = () => password.length < 8;
 
   function handleSubmit() {
-    console.log('hello');
+    console.log(validUsername());
   }
 
   const isDisabled =
-    !validUsername || !validPhonenumber || !validEmail || !validPassword
-      ? true
-      : false;
+    validUsername() || validPhonenumber() || validEmail() || validPassword();
 
   return (
     <div className={styles.wrapper}>
@@ -80,6 +67,7 @@ function SignInPage(): JSX.Element {
             onClick={handleSubmit}
             type="submit"
             disabled={isDisabled}
+            isActive={!isDisabled}
           />
         </form>
       </main>
