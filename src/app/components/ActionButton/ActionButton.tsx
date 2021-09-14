@@ -6,7 +6,7 @@ export type ActionButtonProps = {
   onClick?: () => void;
   type?: 'submit' | 'button';
   isActive?: boolean;
-  disabled: boolean;
+  disabled?: boolean;
 };
 
 const ActionButton = ({
