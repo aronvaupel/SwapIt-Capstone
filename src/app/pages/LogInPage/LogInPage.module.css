@@ -1,0 +1,21 @@
+.wrapper {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 10% 1fr 10%;
+}
+
+.mainWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.action {
+  margin-top: 8rem;
+}
+
+.form {
+  width: 100%;
+}

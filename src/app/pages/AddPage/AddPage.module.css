@@ -2,6 +2,7 @@
   height: 100vh;
   display: grid;
   grid-template-rows: 10% 1fr 10%;
+  width: 100%;
 }
 
 .mainWrapper {
@@ -9,9 +10,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  text-align: center;
+  width: 100%;
 }
 
-.linkWrapper {
+.elements {
   width: 100%;
+  padding: 1rem;
 }

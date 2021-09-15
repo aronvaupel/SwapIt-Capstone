@@ -12,9 +12,11 @@
   box-shadow: none;
   resize: none;
   font-family: inherit;
+  margin-bottom: 0.5rem;
 }
 
 .label {
   font-size: 0.8rem;
   display: block;
+  text-align: start;
 }
