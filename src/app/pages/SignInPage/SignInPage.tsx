@@ -12,17 +12,20 @@ function SignInPage(): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const validUsername = () => username.length < 3;
-  const validPhonenumber = () => phoneNumber.length < 3;
-  const validEmail = () => email.length < 3;
-  const validPassword = () => password.length < 8;
+  const invalidUsername = () => username.length < 3;
+  const invalidPhonenumber = () => phoneNumber.length < 3;
+  const invalidEmail = () => email.length < 3;
+  const invalidPassword = () => password.length < 8;
 
   function handleSubmit() {
     console.log('Click');
   }
 
   const isDisabled =
-    validUsername() || validPhonenumber() || validEmail() || validPassword();
+    invalidUsername() ||
+    invalidPhonenumber() ||
+    invalidEmail() ||
+    invalidPassword();
 
   return (
     <div className={styles.wrapper}>

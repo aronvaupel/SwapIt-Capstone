@@ -5,12 +5,15 @@ export type DescriptionFieldProps = {
   placeholder: string;
   id: string;
   label: string;
+  value?: string;
+  onChange: (value: string) => void;
 };
 
 const DescriptionField = ({
   placeholder,
   id,
   label,
+  onChange,
 }: DescriptionFieldProps): JSX.Element => {
   return (
     <div className="wrapper">
@@ -22,6 +25,7 @@ const DescriptionField = ({
         required
         placeholder={placeholder}
         id={id}
+        onChange={onChange}
       />
     </div>
   );

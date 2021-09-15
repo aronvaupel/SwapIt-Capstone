@@ -5,7 +5,7 @@ import ValueIcon from '../assets/ValueIcon';
 
 export type RatingDisplayProps = {
   type: 'value' | 'condition';
-  value: 1 | 2 | 3 | 4 | 5;
+  value: number;
 };
 
 const RatingDisplay = ({ value, type }: RatingDisplayProps): JSX.Element => {

@@ -4,8 +4,8 @@ import RatingDisplay from '../RatingDisplay/RatingDisplay';
 
 export type mainCardProps = {
   imageSrc: string;
-  ratingValue: 1 | 2 | 3 | 4 | 5;
-  ratingCondition: 1 | 2 | 3 | 4 | 5;
+  ratingValue: number;
+  ratingCondition: number;
 };
 
 const MainCard = ({
