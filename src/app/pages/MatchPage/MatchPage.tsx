@@ -40,35 +40,48 @@ function MatchPage(): JSX.Element {
       <main className={styles.mainWrapper}>
         <section className={styles.upper}>
           <p>Swaps you proposed</p>
-          <Carousel infiniteLoop={true} showThumbs={false}>
+          <Carousel
+            infiniteLoop={true}
+            showThumbs={false}
+            className={styles.carousel}
+          >
             {mockupData.map((item) => (
-              <MatchCard
-                type="proposal"
-                imageSrcOwn={item.srcOwn}
-                imageSrcOther={item.srcOther}
-                handleClick={handleClick}
-                {...item}
-              />
+              <div>
+                <MatchCard
+                  type="proposal"
+                  imageSrcOwn={item.srcOwn}
+                  imageSrcOther={item.srcOther}
+                  handleClick={handleClick}
+                  {...item}
+                />
+              </div>
             ))}
           </Carousel>
         </section>
         <div className={styles.separationLine}></div>
         <section className={styles.lower}>
           <p>Swaps both sides agreed to</p>
-          <Carousel infiniteLoop={true} showThumbs={false}>
+          <Carousel
+            infiniteLoop={true}
+            showThumbs={false}
+            className={styles.carousel}
+          >
             {mockupData.map((item) => (
-              <MatchCard
-                type="accept"
-                imageSrcOwn={item.srcOwn}
-                imageSrcOther={item.srcOther}
-                handleClick={handleClick}
-                {...item}
-              />
+              <div>
+                {' '}
+                <MatchCard
+                  type="accept"
+                  imageSrcOwn={item.srcOwn}
+                  imageSrcOther={item.srcOther}
+                  handleClick={handleClick}
+                  {...item}
+                />
+              </div>
             ))}
           </Carousel>
         </section>
       </main>
-      <Nav />
+      <Nav activeLink="handshake" />
     </div>
   );
 }
