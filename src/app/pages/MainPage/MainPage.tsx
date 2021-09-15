@@ -44,32 +44,37 @@ function MainPage(): JSX.Element {
     <div className={styles.wrapper}>
       <Header />
       <main className={styles.mainWrapper}>
-        <p>Your offer</p>
-        <Carousel infiniteLoop={true} showThumbs={false}>
-          {mockupData.map((item) => (
-            <MainCard
-              imageSrc={item.src}
-              ratingValue={item.value}
-              ratingCondition={item.condition}
-              {...item}
-            />
-          ))}
-        </Carousel>
-        <p>Somebody´s offer</p>
-        <Carousel infiniteLoop={true} showThumbs={false}>
-          {mockupData.map((item) => (
-            <MainCard
-              imageSrc={item.src}
-              ratingValue={item.value}
-              ratingCondition={item.condition}
-              {...item}
-            />
-          ))}
-        </Carousel>
-        <div className={styles.iconBackground}>
-          <IconButton iconType="swap" isActive={true} onClick={handleClick} />
-        </div>
+        <section className={styles.upper}>
+          <p>Your offer</p>
+          <Carousel infiniteLoop={true} showThumbs={false}>
+            {mockupData.map((item) => (
+              <MainCard
+                imageSrc={item.src}
+                ratingValue={item.value}
+                ratingCondition={item.condition}
+                {...item}
+              />
+            ))}
+          </Carousel>
+        </section>{' '}
+        <div className={styles.separationLine}></div>
+        <section className={styles.lower}>
+          <p>Somebody´s offer</p>
+          <Carousel infiniteLoop={true} showThumbs={false}>
+            {mockupData.map((item) => (
+              <MainCard
+                imageSrc={item.src}
+                ratingValue={item.value}
+                ratingCondition={item.condition}
+                {...item}
+              />
+            ))}
+          </Carousel>
+        </section>
       </main>
+      <div className={styles.iconBackground}>
+        <IconButton iconType="swap" isActive={true} onClick={handleClick} />
+      </div>
       <Nav />
     </div>
   );
