@@ -12,6 +12,10 @@
   padding: 1rem;
 }
 
-.linkWrapper {
+.action {
+  margin-top: 8rem;
+}
+
+.form {
   width: 100%;
 }

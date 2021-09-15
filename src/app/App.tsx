@@ -1,10 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import OptionsPage from './pages/OptionsPage/OptionsPage';
 import AddPage from './pages/AddPage/AddPage';
 import MainPage from './pages/MainPage/MainPage';
-import OptionsPage from './pages/OptionsPage/OptionsPage';
 import SignInPage from './pages/SignInPage/SignInPage';
 import StartPage from './pages/StartPage/StartPage';
+import LogInPage from './pages/LogInPage/LogInPage';
 
 function App(): JSX.Element {
   return (
@@ -20,9 +21,9 @@ function App(): JSX.Element {
           <SignInPage />
         </Route>
         <Route path="/logIn">
-          <main>Log in</main>
+          <LogInPage />
         </Route>
-        <Route path="/Proposals">
+        <Route path="/proposals">
           <main>Proposals</main>
         </Route>
         <Route path="/add">

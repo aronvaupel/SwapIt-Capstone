@@ -11,7 +11,7 @@ function OptionsPage(): JSX.Element {
       <main className={styles.mainWrapper}>
         <div className={styles.linkWrapper}>
           <LogInSignInLink url="/signIn" value="Sign in" />
-          <LogInSignInLink url="/LogIn" value="Log in" />
+          <LogInSignInLink url="/logIn" value="Log in" />
         </div>
       </main>
       <Nav />
