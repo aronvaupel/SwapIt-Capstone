@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import AddPage from './pages/AddPage/AddPage';
-import OptionsPage from './pages/OptionsPage';
+import OptionsPage from './pages/OptionsPage/OptionsPage';
+import SignInPage from './pages/SignInPage/SignInPage';
 import StartPage from './pages/StartPage/StartPage';
 
 function App(): JSX.Element {
@@ -15,7 +16,7 @@ function App(): JSX.Element {
           <OptionsPage />
         </Route>
         <Route path="/signIn">
-          <h1>signIn</h1>
+          <SignInPage />
         </Route>
         <Route path="/logIn">
           <main>Log in</main>
