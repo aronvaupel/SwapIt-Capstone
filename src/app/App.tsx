@@ -3,9 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import OptionsPage from './pages/OptionsPage/OptionsPage';
 import StartPage from './pages/StartPage/StartPage';
 import LogInPage from './pages/LogInPage/LogInPage';
-import OptionsPage from './pages/OptionsPage';
 import SignInPage from './pages/SignInPage/SignInPage';
-import StartPage from './pages/StartPage/StartPage';
 
 function App(): JSX.Element {
   return (
@@ -23,7 +21,7 @@ function App(): JSX.Element {
         <Route path="/logIn">
           <LogInPage />
         </Route>
-        <Route path="/Proposals">
+        <Route path="/proposals">
           <main>Proposals</main>
         </Route>
         <Route path="/add">
