@@ -75,7 +75,7 @@ function MainPage(): JSX.Element {
       <div className={styles.iconBackground}>
         <IconButton iconType="swap" isActive={true} onClick={handleClick} />
       </div>
-      <Nav />
+      <Nav activeLink="home" />
     </div>
   );
 }
