@@ -5,6 +5,7 @@ import AddPage from './pages/AddPage/AddPage';
 import MainPage from './pages/MainPage/MainPage';
 import SignInPage from './pages/SignInPage/SignInPage';
 import StartPage from './pages/StartPage/StartPage';
+import MatchPage from './pages/MatchPage/MatchPage';
 import LogInPage from './pages/LogInPage/LogInPage';
 
 function App(): JSX.Element {
@@ -24,7 +25,7 @@ function App(): JSX.Element {
           <LogInPage />
         </Route>
         <Route path="/proposals">
-          <main>Proposals</main>
+          <MatchPage />
         </Route>
         <Route path="/add">
           <AddPage />

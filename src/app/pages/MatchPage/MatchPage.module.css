@@ -1,0 +1,47 @@
+.wrapper {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 10% 1fr 10%;
+  background-color: var(--clr-background);
+}
+
+.mainWrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  height: 100%;
+  align-items: center;
+}
+
+h2 {
+  color: var(--clr-text-secondary);
+  text-align: left;
+  margin: 0;
+  font-size: 0.8em;
+}
+
+.lower {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  margin: 0.25rem;
+}
+
+.upper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  margin: 0.25rem;
+}
+
+.separationLine {
+  height: 1px;
+  width: 100%;
+  border: 1px solid var(--clr-text-secondary);
+}
+
+.carousel {
+  width: 90vw;
+}

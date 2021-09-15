@@ -7,30 +7,14 @@ export type NavProps = {
 };
 
 const Nav = ({ activeLink }: NavProps): JSX.Element => {
-  const active = {
-    isActive: true,
-  };
-
-  const inactive = {
-    isActive: false,
-  };
-
   return (
     <div className={styles.nav}>
-      <IconLink
-        iconType="home"
-        {...(activeLink === 'home' ? active : inactive)}
-        href=""
-      />
-      <IconLink
-        iconType="add"
-        {...(activeLink === 'add' ? active : inactive)}
-        href=""
-      />
+      <IconLink iconType="home" isActive={activeLink !== 'home'} href="/" />
+      <IconLink iconType="add" isActive={activeLink !== 'add'} href="/add" />
       <IconLink
         iconType="handshake"
-        {...(activeLink === 'handshake' ? active : inactive)}
-        href=""
+        isActive={activeLink !== 'handshake'}
+        href="/proposals"
       />
     </div>
   );

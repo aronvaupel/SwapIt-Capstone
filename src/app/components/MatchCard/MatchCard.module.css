@@ -6,11 +6,12 @@
 .imageWrapper {
   display: flex;
   position: relative;
+  width: 100%;
 }
 
 .image {
   border-radius: 3px;
-  width: 50%;
+  width: 50% !important;
   padding: 0.25rem;
 }
 
