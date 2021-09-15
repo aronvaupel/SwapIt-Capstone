@@ -4,7 +4,7 @@
   width: 100%;
   box-shadow: 0 2px 2px 2px var(--clr-text-secondary);
   position: relative;
-  border: 1px black solid;
+  border: 1px var(--clr-text-secondary) solid;
   display: flex;
   justify-content: center;
   align-items: center;

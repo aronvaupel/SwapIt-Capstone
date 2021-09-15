@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import AddPage from './pages/AddPage/AddPage';
+import MainPage from './pages/MainPage/MainPage';
 import OptionsPage from './pages/OptionsPage/OptionsPage';
 import SignInPage from './pages/SignInPage/SignInPage';
 import StartPage from './pages/StartPage/StartPage';
@@ -28,7 +29,7 @@ function App(): JSX.Element {
           <AddPage />
         </Route>
         <Route path="/">
-          <main>Home</main>
+          <MainPage />
         </Route>
       </Switch>
     </BrowserRouter>
