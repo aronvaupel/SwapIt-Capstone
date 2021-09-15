@@ -3,18 +3,30 @@ import styles from './Input.module.css';
 
 export type InputProps = {
   placeholder: string;
-  id: string;
+  id?: string;
   label: string;
+  inputType: 'text' | 'password';
+  onChange: (value: string) => void;
+  value: string;
 };
 
-const Input = ({ placeholder, id, label }: InputProps): JSX.Element => {
+const Input = ({
+  placeholder,
+  id,
+  label,
+  inputType,
+  value,
+  onChange,
+}: InputProps): JSX.Element => {
   return (
     <div className="wrapper">
       <label htmlFor={id} className={styles.label}>
         {label}
       </label>
       <input
-        type="text"
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        type={inputType}
         className={styles.inputSmall}
         required
         placeholder={placeholder}

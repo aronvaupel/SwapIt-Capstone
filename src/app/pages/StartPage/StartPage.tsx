@@ -23,7 +23,7 @@ function StartPage(): JSX.Element {
         <p>and</p>
         <Logo />
         <div className={styles.linkWrapper}>
-          <LogInSignInLink url="/start" value="Get started" />
+          <LogInSignInLink url="/options" value="Get started" />
         </div>
       </main>
       <Nav />
