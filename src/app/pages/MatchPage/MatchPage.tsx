@@ -39,7 +39,7 @@ function MatchPage(): JSX.Element {
       <Header />
       <main className={styles.mainWrapper}>
         <section className={styles.upper}>
-          <p>Swaps you proposed</p>
+          <h2>Swaps you proposed</h2>
           <Carousel
             infiniteLoop={true}
             showThumbs={false}
@@ -60,7 +60,7 @@ function MatchPage(): JSX.Element {
         </section>
         <div className={styles.separationLine}></div>
         <section className={styles.lower}>
-          <p>Swaps both sides agreed to</p>
+          <h2>Swaps both sides agreed to</h2>
           <Carousel
             infiniteLoop={true}
             showThumbs={false}
@@ -68,7 +68,6 @@ function MatchPage(): JSX.Element {
           >
             {mockupData.map((item) => (
               <div>
-                {' '}
                 <MatchCard
                   type="accept"
                   imageSrcOwn={item.srcOwn}
