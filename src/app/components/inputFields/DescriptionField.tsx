@@ -25,7 +25,7 @@ const DescriptionField = ({
         required
         placeholder={placeholder}
         id={id}
-        onChange={onChange}
+        onChange={(event) => onChange(event.target.value)}
       />
     </div>
   );
