@@ -4,6 +4,7 @@ import MainPage from './pages/MainPage/MainPage';
 import OptionsPage from './pages/OptionsPage/OptionsPage';
 import SignInPage from './pages/SignInPage/SignInPage';
 import StartPage from './pages/StartPage/StartPage';
+import MatchPage from './pages/MatchPage/MatchPage';
 
 function App(): JSX.Element {
   return (
@@ -21,8 +22,8 @@ function App(): JSX.Element {
         <Route path="/logIn">
           <main>Log in</main>
         </Route>
-        <Route path="/Proposals">
-          <main>Proposals</main>
+        <Route path="/proposals">
+          <MatchPage />
         </Route>
         <Route path="/add">
           <main>Add</main>
