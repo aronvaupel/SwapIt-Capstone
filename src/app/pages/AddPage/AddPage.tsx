@@ -32,7 +32,7 @@ function AddPage(): JSX.Element {
   const handleClickPhoto = () => {
     console.log('Photo');
   };
-  const handleClickSubmit = () => {
+  const handleSubmit = () => {
     console.log('Submit');
   };
 
@@ -41,7 +41,7 @@ function AddPage(): JSX.Element {
       <Header />
       <main className={styles.mainWrapper}>
         <div className={styles.elements}>
-          <form>
+          <form onSubmit={handleSubmit}>
             <Input
               label="What do you want to swap?"
               id="name"
@@ -75,7 +75,6 @@ function AddPage(): JSX.Element {
             <div className={styles.submit}>
               <ActionButton
                 value="Submit"
-                onClick={handleClickSubmit}
                 disabled={isDisabled}
                 isActive={!isDisabled}
               />
