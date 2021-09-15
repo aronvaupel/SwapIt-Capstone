@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import OptionsPage from './pages/OptionsPage';
+import MainPage from './pages/MainPage/MainPage';
+import OptionsPage from './pages/OptionsPage/OptionsPage';
 import SignInPage from './pages/SignInPage/SignInPage';
 import StartPage from './pages/StartPage/StartPage';
 
