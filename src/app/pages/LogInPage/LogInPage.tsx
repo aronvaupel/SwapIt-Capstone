@@ -23,7 +23,6 @@ function LogInPage(): JSX.Element {
       <Header />
       <main className={styles.mainWrapper}>
         <form className={styles.form}>
-          {' '}
           <div className={styles.input}>
             <Input
               placeholder="Enter username"
