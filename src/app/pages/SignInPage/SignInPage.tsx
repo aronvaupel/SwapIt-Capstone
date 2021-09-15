@@ -18,7 +18,7 @@ function SignInPage(): JSX.Element {
   const validPassword = () => password.length < 8;
 
   function handleSubmit() {
-    console.log(validUsername());
+    console.log('Click');
   }
 
   const isDisabled =
