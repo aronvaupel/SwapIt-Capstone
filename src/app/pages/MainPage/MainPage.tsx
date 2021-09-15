@@ -56,10 +56,10 @@ function MainPage(): JSX.Element {
               />
             ))}
           </Carousel>
-        </section>{' '}
+        </section>
         <div className={styles.separationLine}></div>
         <section className={styles.lower}>
-          <p>Somebody´s offer</p>
+          <p>Somebody's offer</p>
           <Carousel infiniteLoop={true} showThumbs={false}>
             {mockupData.map((item) => (
               <MainCard
