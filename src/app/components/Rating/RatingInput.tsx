@@ -5,8 +5,8 @@ import ValueIcon from '../assets/ValueIcon';
 
 export type RatingInputProps = {
   type: 'value' | 'condition';
-  value: 1 | 2 | 3 | 4 | 5;
-  onValueClick: (value: string) => void;
+  value: number;
+  onValueClick: (value: number) => void;
 };
 
 const RatingInput = ({
@@ -30,7 +30,7 @@ const RatingInput = ({
               type="radio"
               name={type === 'value' ? 'value' : 'condition'}
               checked={value === 1}
-              onChange={() => onValueClick('1')}
+              onChange={() => onValueClick(1)}
             />
 
             <div
@@ -49,7 +49,7 @@ const RatingInput = ({
               type="radio"
               name={type === 'value' ? 'value' : 'condition'}
               checked={value === 2}
-              onChange={() => onValueClick('2')}
+              onChange={() => onValueClick(2)}
             />
             <div
               className={`${styles.indicator} ${
@@ -67,7 +67,7 @@ const RatingInput = ({
               type="radio"
               name={type === 'value' ? 'value' : 'condition'}
               checked={value === 3}
-              onChange={() => onValueClick('3')}
+              onChange={() => onValueClick(3)}
             />
             <div
               className={`${styles.indicator} ${
@@ -85,7 +85,7 @@ const RatingInput = ({
               type="radio"
               name={type === 'value' ? 'value' : 'condition'}
               checked={value === 4}
-              onChange={() => onValueClick('4')}
+              onChange={() => onValueClick(4)}
             />
             <div
               className={`${styles.indicator} ${
@@ -103,7 +103,7 @@ const RatingInput = ({
               type="radio"
               name={type === 'value' ? 'value' : 'condition'}
               checked={value === 5}
-              onChange={() => onValueClick('5')}
+              onChange={() => onValueClick(5)}
             />
             <div
               className={`${styles.indicator} ${

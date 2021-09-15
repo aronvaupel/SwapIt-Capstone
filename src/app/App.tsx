@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import AddPage from './pages/AddPage/AddPage';
 import MainPage from './pages/MainPage/MainPage';
 import OptionsPage from './pages/OptionsPage/OptionsPage';
 import SignInPage from './pages/SignInPage/SignInPage';
@@ -25,7 +26,7 @@ function App(): JSX.Element {
           <main>Proposals</main>
         </Route>
         <Route path="/add">
-          <main>Add</main>
+          <AddPage />
         </Route>
         <Route path="/">
           <MainPage />
