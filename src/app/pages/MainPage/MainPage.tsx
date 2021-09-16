@@ -10,27 +10,27 @@ import { Carousel } from 'react-responsive-carousel';
 function MainPage(): JSX.Element {
   const mockupData = [
     {
-      src: 'src/public/assets/1.jpg',
+      src: '1.jpg',
       value: 1,
       condition: 2,
     },
     {
-      src: 'src/public/assets/1.jpg',
+      src: '1.jpg',
       value: 2,
       condition: 3,
     },
     {
-      src: 'src/public/assets/1.jpg',
+      src: '1.jpg',
       value: 3,
       condition: 4,
     },
     {
-      src: 'src/public/assets/1.jpg',
+      src: '1.jpg',
       value: 4,
       condition: 5,
     },
     {
-      src: 'src/public/assets/1.jpg',
+      src: '1.jpg',
       value: 1,
       condition: 5,
     },
