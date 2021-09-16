@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './MatchCard.module.css';
-import SwapIcon from '../assets/SwapIcon';
+import SwapIcon from '../../../public/assets/SwapIcon';
 import Counter from '../Counter/Counter';
 
 import IconButton from '../Buttons/IconButton';
@@ -34,8 +34,16 @@ const MatchCard = ({
       </article>
 
       <section className={styles.buttonWrapper}>
-        <IconButton iconType="mail" onClick={handleClick} isActive={false} />
-        <IconButton iconType="call" onClick={handleClick} isActive={false} />
+        <IconButton
+          iconType="mail"
+          onClick={handleClick}
+          isActive={type === 'accept'}
+        />
+        <IconButton
+          iconType="call"
+          onClick={handleClick}
+          isActive={type === 'accept'}
+        />
         <IconButton iconType="trashbin" onClick={handleClick} isActive={true} />
       </section>
     </div>

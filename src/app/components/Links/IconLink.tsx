@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './IconLink.module.css';
-import AddIcon from '../assets/AddIcon';
-import HandshakeIcon from '../assets/HandshakeIcon';
-import HomeIcon from '../assets/HomeIcon';
+import AddIcon from '../../../public/assets/AddIcon';
+import HandshakeIcon from '../../../public/assets/HandshakeIcon';
+import HomeIcon from '../../../public/assets/HomeIcon';
 
 export type IconLinkProps = {
   iconType: 'add' | 'handshake' | 'home';

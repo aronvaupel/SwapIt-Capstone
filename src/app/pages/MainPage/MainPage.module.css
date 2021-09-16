@@ -41,7 +41,6 @@ p {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  height: 100%;
   margin: 0.25rem;
 }
 
@@ -49,7 +48,6 @@ p {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  height: 100%;
   margin: 0.25rem;
 }
 

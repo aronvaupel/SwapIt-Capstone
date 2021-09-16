@@ -1,6 +1,7 @@
 .ratingWrapper {
   display: block;
   width: 100%;
+  background-color: var(--clr-background);
 }
 
 .ratingBox {
@@ -11,6 +12,7 @@
   border-radius: 3px;
   padding: 0.5rem;
   margin-bottom: 0.5rem;
+  background-color: var(--clr-background);
 }
 .headlineWrapper {
   height: auto;
