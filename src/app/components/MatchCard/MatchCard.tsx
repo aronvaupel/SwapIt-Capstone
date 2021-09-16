@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './MatchCard.module.css';
-import SwapIcon from '../assets/SwapIcon';
+import SwapIcon from '../svg/SwapIcon';
 import Counter from '../Counter/Counter';
 
 import IconButton from '../Buttons/IconButton';
