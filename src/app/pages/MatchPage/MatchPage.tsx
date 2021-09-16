@@ -9,24 +9,24 @@ import { Carousel } from 'react-responsive-carousel';
 function MatchPage(): JSX.Element {
   const mockupData = [
     {
-      srcOwn: '1.jpg',
-      srcOther: '1.jpg',
+      srcOwn: '../../components/assets/1.jpg',
+      srcOther: '../../components/assets/1.jpg',
     },
     {
-      srcOwn: '1.jpg',
-      srcOther: '1.jpg',
+      srcOwn: '../../components/assets/1.jpg',
+      srcOther: '../../components/assets/1.jpg',
     },
     {
-      srcOwn: '1.jpg',
-      srcOther: '1.jpg',
+      srcOwn: '../../components/assets/1.jpg',
+      srcOther: '../../components/assets/1.jpg',
     },
     {
-      srcOwn: '1.jpg',
-      srcOther: '1.jpg',
+      srcOwn: '../../components/assets/1.jpg',
+      srcOther: '../../components/assets/1.jpg',
     },
     {
-      srcOwn: '1.jpg',
-      srcOther: '1.jpg',
+      srcOwn: '../../components/assets/1.jpg',
+      srcOther: '../../components/assets/1.jpg',
     },
   ];
 
