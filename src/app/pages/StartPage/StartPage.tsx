@@ -2,8 +2,8 @@ import React from 'react';
 import styles from './StartPage.module.css';
 import Header from '../../components/Header/Header';
 import Nav from '../../components/Nav/Nav';
-import SwapIcon from '../../../public/assets/SwapIcon';
-import Logo from '../../../public/assets/Logo';
+import SwapIcon from '../../components/assets/SwapIcon';
+import Logo from '../../components/assets/Logo';
 import LogInSignInLink from '../../components/LogIn-SignIn-Link/LogIn-SignIn-Link';
 
 function StartPage(): JSX.Element {
