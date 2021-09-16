@@ -12,8 +12,8 @@ function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/start">
-          <StartPage />
+        <Route path="/home">
+          <MainPage />
         </Route>
         <Route path="/options">
           <OptionsPage />
@@ -31,7 +31,7 @@ function App(): JSX.Element {
           <AddPage />
         </Route>
         <Route path="/">
-          <MainPage />
+          <StartPage />
         </Route>
       </Switch>
     </BrowserRouter>
