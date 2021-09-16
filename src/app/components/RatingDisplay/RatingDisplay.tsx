@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './RatingDisplay.module.css';
-import ConditionIcon from '../assets/ConditionIcon';
-import ValueIcon from '../assets/ValueIcon';
+import ConditionIcon from '../svg/ConditionIcon';
+import ValueIcon from '../svg/ValueIcon';
 
 export type RatingDisplayProps = {
   type: 'value' | 'condition';

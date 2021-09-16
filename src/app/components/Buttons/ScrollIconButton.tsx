@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './ScrollIconButton.module.css';
-import NextIcon from '../assets/NextIcon';
-import PreviousIcon from '../assets/PreviousIcon';
+import NextIcon from '../svg/NextIcon';
+import PreviousIcon from '../svg/PreviousIcon';
 
 export type ScrollIconButtonProps = {
   iconType: 'next' | 'previous';

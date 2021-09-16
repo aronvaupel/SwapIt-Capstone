@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './IconButton.module.css';
-import SwapIcon from '../assets/SwapIcon';
-import CallIcon from '../assets/CallIcon';
-import MailIcon from '../assets/MailIcon';
-import TrashbinIcon from '../assets/TrashbinIcon';
+import SwapIcon from '../svg/SwapIcon';
+import CallIcon from '../svg/CallIcon';
+import MailIcon from '../svg/MailIcon';
+import TrashbinIcon from '../svg/TrashbinIcon';
 
 export type IconButtonProps = {
   iconType: 'swap' | 'call' | 'mail' | 'trashbin';
@@ -17,7 +17,10 @@ const IconButton = ({
   onClick,
 }: IconButtonProps): JSX.Element => {
   const active = {
-    fill: 'var(--clr-accent)',
+    fill:
+      iconType !== 'mail' && iconType !== 'call'
+        ? 'var(--clr-accent)'
+        : 'var(--clr-high)',
     stroke: 'var(--clr-accent)',
   };
 

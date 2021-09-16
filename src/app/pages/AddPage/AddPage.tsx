@@ -82,7 +82,7 @@ function AddPage(): JSX.Element {
           </form>
         </div>
       </main>
-      <Nav />
+      <Nav activeLink="add" />
     </div>
   );
 }

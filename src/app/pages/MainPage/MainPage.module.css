@@ -2,7 +2,6 @@
   height: 100vh;
   display: grid;
   grid-template-rows: 10% 1fr 10%;
-  background-color: var(--clr-background);
 }
 
 .mainWrapper {
@@ -41,7 +40,6 @@ p {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  height: 100%;
   margin: 0.25rem;
 }
 
@@ -49,7 +47,6 @@ p {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  height: 100%;
   margin: 0.25rem;
 }
 
