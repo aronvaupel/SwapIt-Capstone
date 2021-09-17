@@ -75,6 +75,7 @@ function AddPage(): JSX.Element {
             <div className={styles.submit}>
               <ActionButton
                 value="Submit"
+                type="submit"
                 disabled={isDisabled}
                 isActive={!isDisabled}
               />
