@@ -17,8 +17,22 @@ function SignInPage(): JSX.Element {
   const invalidEmail = () => email.length < 3;
   const invalidPassword = () => password.length < 8;
 
-  function handleSubmit() {
-    console.log('Click');
+  async function handleSubmit() {
+    const newUser = {
+      username: username,
+      phoneNumber: phoneNumber,
+      email: email,
+      password: password,
+    };
+    const response = await fetch('/api/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newUser),
+    });
+    console.log(await response.json());
+    alert('Done');
   }
 
   const isDisabled =
@@ -31,14 +45,20 @@ function SignInPage(): JSX.Element {
     <div className={styles.wrapper}>
       <Header />
       <main className={styles.mainWrapper}>
-        <form className={styles.form}>
+        <form
+          className={styles.form}
+          onSubmit={(event) => {
+            event.preventDefault();
+            handleSubmit();
+          }}
+        >
           <Input
             placeholder="Enter username"
             label="Username"
             inputType="text"
             id="username"
             value={username}
-            onChange={(value) => setUsername(value)}
+            onChange={(username) => setUsername(username)}
           />
           <Input
             placeholder="Enter phone number"
@@ -46,7 +66,7 @@ function SignInPage(): JSX.Element {
             inputType="text"
             id="Phone"
             value={phoneNumber}
-            onChange={(value) => setPhoneNumber(value)}
+            onChange={(phoneNumber) => setPhoneNumber(phoneNumber)}
           />
           <Input
             placeholder="Enter email"
@@ -54,7 +74,7 @@ function SignInPage(): JSX.Element {
             inputType="text"
             id="Email"
             value={email}
-            onChange={(value) => setEmail(value)}
+            onChange={(email) => setEmail(email)}
           />
           <Input
             placeholder="Enter password"
@@ -62,12 +82,11 @@ function SignInPage(): JSX.Element {
             inputType="password"
             id="Password"
             value={password}
-            onChange={(value) => setPassword(value)}
+            onChange={(password) => setPassword(password)}
           />
 
           <ActionButton
             value="Submit"
-            onClick={handleSubmit}
             type="submit"
             disabled={isDisabled}
             isActive={!isDisabled}
