@@ -8,12 +8,12 @@ export type User = {
   password: string;
 };
 
-export type Items = {
-  name: string;
-  value: number;
-  condition: number;
+export type Item = {
+  itemName: string;
+  valueInput: number;
+  conditionInput: number;
   description: string;
-  src: string;
+  itemSrc: string;
 };
 
 export type Proposals = {
