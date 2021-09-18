@@ -12,7 +12,6 @@ export type ActionButtonProps = {
 const ActionButton = ({
   value,
   onClick,
-  type = 'button',
   isActive,
   disabled,
 }: ActionButtonProps): JSX.Element => {
