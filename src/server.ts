@@ -1,8 +1,9 @@
 import express from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
-import { createUser } from './app/utils/CRUDfunctions';
-import type { User } from './app/utils/types';
+import { createUser } from './app/utils/users';
+import { addItem } from './app/utils/items';
+import type { User, Item } from './app/utils/types';
 import { connectDatabase } from './app/utils/database';
 
 const app = express();
@@ -14,6 +15,12 @@ app.post('/api/users', async (req, res) => {
   const user: User = req.body;
   await createUser(user);
   return res.status(200).send(user);
+});
+
+app.post('/api/items', async (req, res) => {
+  const item: Item = req.body;
+  await addItem(item);
+  return res.status(200).send(item);
 });
 
 app.use('/storybook', express.static('dist/storybook'));
