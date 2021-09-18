@@ -48,8 +48,8 @@ function SignInPage(): JSX.Element {
         <form
           className={styles.form}
           onSubmit={(event) => {
-            event.preventDefault();
             handleSubmit();
+            event.preventDefault();
           }}
         >
           <Input
