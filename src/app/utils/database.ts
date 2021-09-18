@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb';
 import type { Collection } from 'mongodb';
-import type { User } from './types';
+import type { User, Item } from './types';
 
 let client: MongoClient;
 
@@ -15,4 +15,8 @@ export function getCollection<T>(name: string): Collection<T> {
 
 export function getUserCollection(): Collection<User> {
   return getCollection<User>('users');
+}
+
+export function getItemCollection(): Collection<Item> {
+  return getCollection<Item>('items');
 }
