@@ -4,7 +4,7 @@ import styles from './ActionButton.module.css';
 export type ActionButtonProps = {
   value: 'Submit' | 'Upload photo';
   onClick?: () => void;
-  type?: 'submit' | 'button';
+  type?: 'submit' | 'file';
   isActive?: boolean;
   disabled?: boolean;
 };
