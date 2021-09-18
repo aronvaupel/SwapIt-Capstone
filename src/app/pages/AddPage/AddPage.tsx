@@ -13,6 +13,7 @@ function AddPage(): JSX.Element {
   const [valueInput, setValueInput] = useState(0);
   const [conditionInput, setConditionInput] = useState(0);
   const [description, setDescription] = useState('');
+  const [itemSrc, setItemSrc] = useState('');
 
   const invalidItemName = () => itemName.length < 3;
   const invalidValueInput = () => valueInput <= 0;
@@ -30,25 +31,46 @@ function AddPage(): JSX.Element {
   };
 
   const handleClickPhoto = () => {
-    console.log('Photo');
+    setItemSrc(itemSrc);
   };
-  const handleSubmit = () => {
-    console.log('Submit');
-  };
+
+  async function handleSubmit() {
+    const newItem = {
+      itemName: itemName,
+      valueInput: valueInput,
+      conditionInput: conditionInput,
+      description: description,
+      itemSrc: itemSrc,
+    };
+    const response = await fetch('/api/items', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newItem),
+    });
+    console.log(await response.json());
+    alert('Done');
+  }
 
   return (
     <div className={styles.wrapper}>
       <Header />
       <main className={styles.mainWrapper}>
         <div className={styles.elements}>
-          <form onSubmit={handleSubmit}>
+          <form
+            onSubmit={(event) => {
+              event.preventDefault();
+              handleSubmit();
+            }}
+          >
             <Input
               label="What do you want to swap?"
               id="name"
               placeholder="Enter a name for your item"
               inputType="text"
               value={itemName}
-              onChange={(value) => setItemname(value)}
+              onChange={(itemName) => setItemname(itemName)}
             />
             <RatingInput
               type="value"
@@ -65,10 +87,11 @@ function AddPage(): JSX.Element {
               placeholder="Enter information about your item"
               id="description"
               value={description}
-              onChange={(value) => setDescription(value)}
+              onChange={(description) => setDescription(description)}
             />
             <ActionButton
               value="Upload photo"
+              type="file"
               onClick={handleClickPhoto}
               isActive={true}
             />
@@ -87,4 +110,5 @@ function AddPage(): JSX.Element {
     </div>
   );
 }
+
 export default AddPage;
