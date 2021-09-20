@@ -23,6 +23,25 @@ app.post('/api/items', async (req, res) => {
   return res.status(200).send(item);
 });
 
+app.post('/login', async (req, res, next) => {
+  try {
+    const { username, password } = req.body;
+    const user = await readUser({ username, password });
+    if (!user) {
+      res.status(404).send('User or password is incorrect');
+      alert('User or password is incorrect');
+      return;
+    }
+    res.setHeader(
+      'Set-Cookie',
+      `userId=${user._id};path=/;Max-Age=${365 * 24 * 60 * 60}`
+    );
+    res.status(200).json(user);
+  } catch (error) {
+    next(error);
+  }
+});
+
 app.use('/storybook', express.static('dist/storybook'));
 
 app.use(express.static('dist/app'));
