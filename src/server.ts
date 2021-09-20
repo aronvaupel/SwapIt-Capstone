@@ -5,6 +5,7 @@ import { createUser } from './app/utils/users';
 import { addItem } from './app/utils/items';
 import type { User, Item } from './app/utils/types';
 import { connectDatabase } from './app/utils/database';
+import { getUser } from './app/utils/users';
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -26,7 +27,7 @@ app.post('/api/items', async (req, res) => {
 app.post('/login', async (req, res, next) => {
   try {
     const { username, password } = req.body;
-    const user = await readUser({ username, password });
+    const user = await getUser(username, password);
     if (!user) {
       res.status(404).send('User or password is incorrect');
       alert('User or password is incorrect');
