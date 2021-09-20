@@ -2,6 +2,7 @@ export type DB = {
   users: User[];
 };
 export type User = {
+  _id: string;
   username: string;
   phone: number;
   email: string;
@@ -9,6 +10,8 @@ export type User = {
 };
 
 export type Item = {
+  _id: string;
+  ownerId: string;
   itemName: string;
   valueInput: number;
   conditionInput: number;
@@ -17,13 +20,11 @@ export type Item = {
 };
 
 export type Proposals = {
-  username: string;
-  item: string;
-  src: string;
-  partnername: string;
-  partneritem: string;
-  partnersrc: string;
-  partnerphone: number;
-  partneremail: string;
-  match: false;
+  _id: string;
+  partnerOneId: string;
+  partnerTwoId: string;
+  partnerOneAccepted: boolean;
+  partnerTwoAccepted: boolean;
+  itemOneId: string;
+  itemTwoId: string;
 };
