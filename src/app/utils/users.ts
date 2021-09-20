@@ -6,8 +6,11 @@ export async function createUser(user: User): Promise<void> {
   users.insertOne(user);
 }
 
-export async function getUser(username: string): Promise<User | null> {
+export async function getUser(
+  username: string,
+  password: string
+): Promise<User | null> {
   const userCollection = getUserCollection();
-  const user = await userCollection.findOne({ username });
+  const user = await userCollection.findOne({ username, password });
   return user;
 }
