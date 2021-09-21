@@ -15,6 +15,7 @@ app.use(express.json());
 app.post('/api/users', async (req, res) => {
   const user: User = req.body;
   await createUser(user);
+  res.cookie('currentUser', user._id, { maxAge: 365 * 24 * 60 * 60 });
   return res.status(200).send(user);
 });
 
