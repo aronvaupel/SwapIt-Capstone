@@ -33,7 +33,7 @@ app.post('/api/login', async (req, res, next) => {
       alert('User or password is incorrect');
       return;
     }
-    res.cookie('userId', 'user._id', { maxAge: 365 * 24 * 60 * 60 });
+    res.cookie('currentUser', user._id, { maxAge: 365 * 24 * 60 * 60 });
     res.status(200).json(user);
   } catch (error) {
     next(error);
