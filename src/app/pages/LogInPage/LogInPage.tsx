@@ -5,24 +5,32 @@ import Nav from '../../components/Nav/Nav';
 import Input from '../../components/inputFields/Input';
 import ActionButton from '../../components/ActionButton/ActionButton';
 import { useState } from 'react';
+import { verifyLogin } from '../../utils/verification';
+import { useHistory } from 'react-router-dom';
+import type { User } from '../../utils/types';
 
 function LogInPage(): JSX.Element {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const history = useHistory();
 
   const validUsername = () => username.length < 3;
   const validPassword = () => password.length < 8;
 
   const isDisabled = validUsername() || validPassword();
 
-  const handleSubmit = () => {
-    console.log('Click');
-  };
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const user: Partial<User> = { username, password };
+    await verifyLogin(username, password);
+    history.push('/home');
+  }
+
   return (
     <div className={styles.wrapper}>
       <Header />
       <main className={styles.mainWrapper}>
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.input}>
             <Input
               placeholder="Enter username"
@@ -45,7 +53,6 @@ function LogInPage(): JSX.Element {
             <ActionButton
               type="submit"
               value="Submit"
-              onClick={handleSubmit}
               disabled={isDisabled}
               isActive={!isDisabled}
             />
