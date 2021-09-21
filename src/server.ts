@@ -24,7 +24,7 @@ app.post('/api/items', async (req, res) => {
   return res.status(200).send(item);
 });
 
-app.post('/login', async (req, res, next) => {
+app.post('/api/login', async (req, res, next) => {
   try {
     const { username, password } = req.body;
     const user = await getUser(username, password);
@@ -33,10 +33,7 @@ app.post('/login', async (req, res, next) => {
       alert('User or password is incorrect');
       return;
     }
-    res.setHeader(
-      'Set-Cookie',
-      `userId=${user._id};path=/;Max-Age=${365 * 24 * 60 * 60}`
-    );
+    res.cookie('userId', 'user._id', { maxAge: 365 * 24 * 60 * 60 });
     res.status(200).json(user);
   } catch (error) {
     next(error);
