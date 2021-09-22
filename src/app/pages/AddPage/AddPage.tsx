@@ -7,6 +7,7 @@ import RatingInput from '../../components/Rating/RatingInput';
 import DescriptionField from '../../components/inputFields/DescriptionField';
 import ActionButton from '../../components/ActionButton/ActionButton';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 function AddPage(): JSX.Element {
   const [itemName, setItemname] = useState('');
@@ -14,6 +15,7 @@ function AddPage(): JSX.Element {
   const [conditionInput, setConditionInput] = useState(0);
   const [description, setDescription] = useState('');
   const [itemSrc, setItemSrc] = useState('');
+  const history = useHistory();
 
   const invalidItemName = () => itemName.length < 3;
   const invalidValueInput = () => valueInput <= 0;
@@ -49,8 +51,8 @@ function AddPage(): JSX.Element {
       },
       body: JSON.stringify(newItem),
     });
+    history.push('/home');
     console.log(await response.json());
-    alert('Done');
   }
 
   return (
@@ -91,7 +93,7 @@ function AddPage(): JSX.Element {
             />
             <ActionButton
               value="Upload photo"
-              type="file"
+              type="button"
               onClick={handleClickPhoto}
               isActive={true}
             />
