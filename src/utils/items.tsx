@@ -17,7 +17,7 @@ export async function getOwnItems(owner: string): Promise<Item[]> {
 
 export async function getItems(owner: string): Promise<Item[]> {
   const items = getItemCollection();
-  return items
+  return await items
     .find((item: { ownerId: string }) => item.ownerId !== owner)
     .toArray();
 }
