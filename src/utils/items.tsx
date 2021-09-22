@@ -10,7 +10,14 @@ export async function addItem(
   items.insertOne({ ownerId: owner, ...item });
 }
 
-export async function getItems(owner: string): Promise<Item[]> {
+export async function getOwnItems(owner: string): Promise<Item[]> {
   const items = getItemCollection();
   return items.find({ ownerId: owner }).toArray();
+}
+
+export async function getItems(owner: string): Promise<Item[]> {
+  const items = getItemCollection();
+  return items
+    .find((item: { ownerId: string }) => item.ownerId !== owner)
+    .toArray();
 }
