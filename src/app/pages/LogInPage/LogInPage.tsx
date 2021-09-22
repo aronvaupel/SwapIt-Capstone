@@ -5,9 +5,8 @@ import Nav from '../../components/Nav/Nav';
 import Input from '../../components/inputFields/Input';
 import ActionButton from '../../components/ActionButton/ActionButton';
 import { useState } from 'react';
-import { verifyLogin } from '../../utils/verification';
+import { verifyLogin } from '../../../utils/verification';
 import { useHistory } from 'react-router-dom';
-import type { User } from '../../utils/types';
 
 function LogInPage(): JSX.Element {
   const [username, setUsername] = useState('');
@@ -21,7 +20,6 @@ function LogInPage(): JSX.Element {
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const user: Partial<User> = { username, password };
     await verifyLogin(username, password);
     history.push('/home');
   }
