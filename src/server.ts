@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
 import { createUser } from './utils/users';
-import { addItem, getItems } from './utils/items';
+import { addItem, getItems, getOwnItems } from './utils/items';
 import type { User, Item } from './utils/types';
 import { connectDatabase } from './utils/database';
 import { getUser } from './utils/users';
@@ -31,6 +31,12 @@ app.post('/api/items', async (req, res) => {
 });
 
 app.get('/api/items/currentuser', async (req, res) => {
+  const userID = req.cookies.currentUser;
+  const items = await getOwnItems(userID);
+  return res.status(200).send(items);
+});
+
+app.get('/api/items/otherusers', async (req, res) => {
   const userID = req.cookies.currentUser;
   const items = await getItems(userID);
   return res.status(200).send(items);
