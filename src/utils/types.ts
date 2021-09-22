@@ -1,8 +1,10 @@
+import type { ObjectId } from 'bson';
+
 export type DB = {
   users: User[];
 };
 export type User = {
-  _id: string;
+  _id?: ObjectId;
   username: string;
   phone: number;
   email: string;
@@ -10,7 +12,7 @@ export type User = {
 };
 
 export type Item = {
-  _id: string;
+  _id?: ObjectId;
   ownerId: string;
   itemName: string;
   valueInput: number;

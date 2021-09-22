@@ -1,9 +1,10 @@
 import type { User } from './types';
 import { getUserCollection } from './database';
 
-export async function createUser(user: User): Promise<void> {
+export async function createUser(user: User): Promise<Partial<User>> {
   const users = getUserCollection();
-  users.insertOne(user);
+  const result = await users.insertOne(user);
+  return { _id: result.insertedId, username: user.username };
 }
 
 export async function getUser(
