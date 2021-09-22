@@ -42,7 +42,7 @@ app.get('/api/items/otherusers', async (req, res) => {
   return res.status(200).send(items);
 });
 
-app.post('/api/login', async (req, res, next) => {
+app.post('/api/login', async (req, res) => {
   try {
     const { username, password } = req.body;
     const user = await getUser(username, password);
@@ -59,7 +59,7 @@ app.post('/api/login', async (req, res, next) => {
     });
     res.status(200).json(user);
   } catch (error) {
-    next(error);
+    console.error(error);
   }
 });
 
