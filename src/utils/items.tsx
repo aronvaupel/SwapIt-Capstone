@@ -6,13 +6,13 @@ export async function addItem(
   owner: string
 ): Promise<void> {
   const items = getItemCollection();
-  console.log(item);
-  items.insertOne({ ownerId: owner, ...item });
+
+  await items.insertOne({ ownerId: owner, ...item });
 }
 
 export async function getOwnItems(owner: string): Promise<Item[]> {
   const items = getItemCollection();
-  return items.find({ ownerId: owner }).toArray();
+  return await items.find({ ownerId: owner }).toArray();
 }
 
 export async function getItems(owner: string): Promise<Item[]> {
