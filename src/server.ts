@@ -31,12 +31,14 @@ app.post('/api/items', async (req, res) => {
 });
 
 app.get('/api/items/currentuser', async (req, res) => {
+  console.log('hallo1');
   const userID = req.cookies.currentUser;
   const items = await getOwnItems(userID);
   return res.status(200).send(items);
 });
 
 app.get('/api/items/otherusers', async (req, res) => {
+  console.log('hallo2');
   const userID = req.cookies.currentUser;
   const items = await getItems(userID);
   return res.status(200).send(items);
