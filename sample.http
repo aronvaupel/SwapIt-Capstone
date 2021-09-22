@@ -6,3 +6,11 @@ Content-Type: application/json
     "username": "Anna", 
     "password": "qwertz123"
 }
+
+### get users's items
+
+GET http://localhost:3001/api/items/currentuser
+
+### get others
+
+GET http://localhost:3001/api/items/otherusers
