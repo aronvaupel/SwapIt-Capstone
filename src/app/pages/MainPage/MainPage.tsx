@@ -13,21 +13,16 @@ function MainPage(): JSX.Element {
   const [ownItems, setOwnItems] = useState<Item[]>([]);
   const [otherItems, setOtherItems] = useState<Item[]>([]);
 
-  async function fetchOwnItems(): Promise<Item[]> {
+  async function fetchOwnItems(): Promise<void> {
     const response = await fetch('/api/items/currentuser');
     const ownItems = await response.json();
-    console.log(response.json);
     setOwnItems(ownItems);
-    return ownItems;
   }
 
-  async function fetchOtherItems(): Promise<Item[]> {
+  async function fetchOtherItems(): Promise<void> {
     const response = await fetch('/api/items/otherusers');
     const otherItems = await response.json();
-    console.log(response.json);
     setOtherItems(otherItems);
-
-    return otherItems;
   }
 
   const handleClick = () => {
@@ -37,7 +32,7 @@ function MainPage(): JSX.Element {
   useEffect(() => {
     fetchOwnItems();
     fetchOtherItems();
-  }, [handleClick]);
+  }, []);
 
   return (
     <div className={styles.wrapper}>
@@ -45,9 +40,14 @@ function MainPage(): JSX.Element {
       <main className={styles.mainWrapper}>
         <section className={styles.upper}>
           <p>Your offer</p>
-          <Carousel infiniteLoop={true} showThumbs={false}>
+          <Carousel
+            infiniteLoop={true}
+            showThumbs={false}
+            className={styles.carousel}
+          >
             {ownItems.map((item) => (
               <MainCard
+                type="own"
                 imageSrc={item.itemSrc}
                 ratingValue={item.valueInput}
                 ratingCondition={item.conditionInput}
@@ -59,9 +59,14 @@ function MainPage(): JSX.Element {
         <div className={styles.separationLine}></div>
         <section className={styles.lower}>
           <p>Somebody's offer</p>
-          <Carousel infiniteLoop={true} showThumbs={false}>
+          <Carousel
+            infiniteLoop={true}
+            showThumbs={false}
+            className={styles.carousel}
+          >
             {otherItems.map((item) => (
               <MainCard
+                type="other"
                 imageSrc={item.itemSrc}
                 ratingValue={item.valueInput}
                 ratingCondition={item.conditionInput}
