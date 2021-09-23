@@ -1,23 +1,21 @@
 import type { Item } from './types';
 import { getItemCollection } from './database';
+import type { ObjectId } from 'mongodb';
 
 export async function addItem(
   item: Omit<Item, 'ownerId'>,
-  owner: string
+  owner: ObjectId
 ): Promise<void> {
   const items = getItemCollection();
-
   await items.insertOne({ ownerId: owner, ...item });
 }
 
-export async function getOwnItems(owner: string): Promise<Item[]> {
+export async function getOwnItems(owner: ObjectId): Promise<Item[]> {
   const items = getItemCollection();
   return await items.find({ ownerId: owner }).toArray();
 }
 
-export async function getItems(owner: string): Promise<Item[]> {
+export async function getItems(owner: ObjectId): Promise<Item[]> {
   const items = getItemCollection();
-  return await items
-    .find((item: { ownerId: string }) => item.ownerId !== owner)
-    .toArray();
+  return await items.find({ ownerId: { $ne: owner } }).toArray();
 }
