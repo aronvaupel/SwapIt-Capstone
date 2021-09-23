@@ -89,6 +89,6 @@ if (!process.env.MONGODB_URL) {
 connectDatabase(process.env.MONGODB_URL).then(() => {
   console.log('connected to db');
   app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
+    console.log(`Swapit-App-Server listening at http://localhost:${port}`);
   });
 });
