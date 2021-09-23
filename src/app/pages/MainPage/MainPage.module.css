@@ -1,7 +1,8 @@
 .wrapper {
   height: 100vh;
   display: grid;
-  grid-template-rows: 10% 1fr 10%;
+  grid-template-rows: 10% 80% 10%;
+  position: relative;
 }
 
 .mainWrapper {
@@ -11,6 +12,7 @@
   height: 100%;
   align-items: center;
   position: relative;
+  overflow: auto;
 }
 
 p {
@@ -41,6 +43,7 @@ p {
   justify-content: center;
   flex-direction: column;
   margin: 0.25rem;
+  height: 100%;
 }
 
 .upper {
@@ -48,6 +51,7 @@ p {
   justify-content: center;
   flex-direction: column;
   margin: 0.25rem;
+  height: 100%;
 }
 
 .separationLine {
