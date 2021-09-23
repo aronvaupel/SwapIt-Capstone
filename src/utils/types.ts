@@ -13,7 +13,7 @@ export type User = {
 
 export type Item = {
   _id?: ObjectId;
-  ownerId: string;
+  ownerId: ObjectId;
   itemName: string;
   valueInput: number;
   conditionInput: number;
@@ -23,10 +23,12 @@ export type Item = {
 
 export type Proposals = {
   _id: string;
-  partnerOneId: string;
-  partnerTwoId: string;
-  partnerOneAccepted: boolean;
-  partnerTwoAccepted: boolean;
-  itemOneId: string;
-  itemTwoId: string;
+  users: [string];
+  items: [string];
+};
+
+export type Matches = {
+  _id: string;
+  users: [string];
+  items: [string];
 };
