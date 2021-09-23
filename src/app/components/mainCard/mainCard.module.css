@@ -31,3 +31,6 @@
   z-index: 1;
   height: 100%;
 }
+.imageWrapper {
+  height: 30vh;
+}
