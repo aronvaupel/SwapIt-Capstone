@@ -5,12 +5,14 @@ import Nav from '../../components/Nav/Nav';
 import Input from '../../components/inputFields/Input';
 import ActionButton from '../../components/ActionButton/ActionButton';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 function SignInPage(): JSX.Element {
   const [username, setUsername] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const history = useHistory();
 
   const invalidUsername = () => username.length < 3;
   const invalidPhonenumber = () => phoneNumber.length < 3;
@@ -31,6 +33,7 @@ function SignInPage(): JSX.Element {
       },
       body: JSON.stringify(newUser),
     });
+    history.push('/add');
     console.log(await response.json());
     alert('Done');
   }

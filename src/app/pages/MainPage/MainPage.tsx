@@ -6,39 +6,33 @@ import MainCard from '../../components/mainCard/mainCard';
 import IconButton from '../../components/Buttons/IconButton';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
+import { useEffect, useState } from 'react';
+import type { Item } from '../../../utils/types';
 
 function MainPage(): JSX.Element {
-  const mockupData = [
-    {
-      src: '1.jpg',
-      value: 1,
-      condition: 2,
-    },
-    {
-      src: '1.jpg',
-      value: 2,
-      condition: 3,
-    },
-    {
-      src: '1.jpg',
-      value: 3,
-      condition: 4,
-    },
-    {
-      src: '1.jpg',
-      value: 4,
-      condition: 5,
-    },
-    {
-      src: '1.jpg',
-      value: 1,
-      condition: 5,
-    },
-  ];
+  const [ownItems, setOwnItems] = useState<Item[]>([]);
+  const [otherItems, setOtherItems] = useState<Item[]>([]);
+
+  async function fetchOwnItems(): Promise<void> {
+    const response = await fetch('/api/items/currentuser');
+    const ownItems = await response.json();
+    setOwnItems(ownItems);
+  }
+
+  async function fetchOtherItems(): Promise<void> {
+    const response = await fetch('/api/items/otherusers');
+    const otherItems = await response.json();
+    setOtherItems(otherItems);
+  }
 
   const handleClick = () => {
     console.log('click');
   };
+
+  useEffect(() => {
+    fetchOwnItems();
+    fetchOtherItems();
+  }, []);
 
   return (
     <div className={styles.wrapper}>
@@ -46,12 +40,17 @@ function MainPage(): JSX.Element {
       <main className={styles.mainWrapper}>
         <section className={styles.upper}>
           <p>Your offer</p>
-          <Carousel infiniteLoop={true} showThumbs={false}>
-            {mockupData.map((item) => (
+          <Carousel
+            infiniteLoop={true}
+            showThumbs={false}
+            className={styles.carousel}
+          >
+            {ownItems.map((item) => (
               <MainCard
-                imageSrc={item.src}
-                ratingValue={item.value}
-                ratingCondition={item.condition}
+                type="own"
+                imageSrc={item.itemSrc}
+                ratingValue={item.valueInput}
+                ratingCondition={item.conditionInput}
                 {...item}
               />
             ))}
@@ -60,12 +59,17 @@ function MainPage(): JSX.Element {
         <div className={styles.separationLine}></div>
         <section className={styles.lower}>
           <p>Somebody's offer</p>
-          <Carousel infiniteLoop={true} showThumbs={false}>
-            {mockupData.map((item) => (
+          <Carousel
+            infiniteLoop={true}
+            showThumbs={false}
+            className={styles.carousel}
+          >
+            {otherItems.map((item) => (
               <MainCard
-                imageSrc={item.src}
-                ratingValue={item.value}
-                ratingCondition={item.condition}
+                type="other"
+                imageSrc={item.itemSrc}
+                ratingValue={item.valueInput}
+                ratingCondition={item.conditionInput}
                 {...item}
               />
             ))}

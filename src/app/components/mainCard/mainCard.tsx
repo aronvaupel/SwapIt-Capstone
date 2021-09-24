@@ -6,6 +6,7 @@ export type mainCardProps = {
   imageSrc: string;
   ratingValue: number;
   ratingCondition: number;
+  type: 'own' | 'other';
 };
 
 const MainCard = ({
@@ -15,12 +16,15 @@ const MainCard = ({
 }: mainCardProps): JSX.Element => {
   return (
     <div className={styles.wrapper}>
-      <img src={imageSrc} className={styles.image} />
-      <div className={styles.positionerValue}>
-        <RatingDisplay value={ratingValue} type="value" />
-      </div>
-      <div className={styles.positionerCondition}>
-        <RatingDisplay value={ratingCondition} type="condition" />
+      <div className={styles.imageWrapper}>
+        <img src={imageSrc} className={styles.image} />
+
+        <div className={styles.positionerValue}>
+          <RatingDisplay value={ratingValue} type="value" />
+        </div>
+        <div className={styles.positionerCondition}>
+          <RatingDisplay value={ratingCondition} type="condition" />
+        </div>
       </div>
     </div>
   );
