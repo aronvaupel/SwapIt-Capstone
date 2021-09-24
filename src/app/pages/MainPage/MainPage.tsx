@@ -38,20 +38,7 @@ function MainPage(): JSX.Element {
 
     const response = await fetch('api/proposals');
     const existingProposals: Proposal[] = await response.json();
-    const matchingProposal: Proposal | undefined = existingProposals.find(
-      (proposal) => proposal === newProposal
-    );
-
-    if (matchingProposal) {
-      await fetch(`api/proposals/delete/${matchingProposal}`);
-      await fetch('api/matches', {
-        method: 'POST',
-        headers: {
-          'Content-type': 'applicatio/json',
-        },
-        body: JSON.stringify(newProposal),
-      });
-    } else {
+    if (!existingProposals) {
       await fetch('api/proposals', {
         method: 'POST',
         headers: {
@@ -59,6 +46,29 @@ function MainPage(): JSX.Element {
         },
         body: JSON.stringify(newProposal),
       });
+    } else {
+      const matchingProposal = existingProposals.find(
+        (proposal) => proposal === newProposal
+      );
+
+      if (matchingProposal) {
+        await fetch(`api/proposals/delete/${matchingProposal}`);
+        await fetch('api/matches', {
+          method: 'POST',
+          headers: {
+            'Content-type': 'applicatio/json',
+          },
+          body: JSON.stringify(newProposal),
+        });
+      } else {
+        await fetch('api/proposals', {
+          method: 'POST',
+          headers: {
+            'Content-type': 'application/json',
+          },
+          body: JSON.stringify(newProposal),
+        });
+      }
     }
   }
 
