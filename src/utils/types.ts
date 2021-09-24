@@ -21,14 +21,15 @@ export type Item = {
   itemSrc: string;
 };
 
-export type Proposals = {
-  _id: string;
-  users: [string];
-  items: [string];
+export type Proposal = {
+  _id: ObjectId;
+  users: ObjectId[];
+  items: ObjectId[];
+  creator: ObjectId;
 };
 
-export type Matches = {
-  _id: string;
-  users: [string];
-  items: [string];
+export type Match = {
+  _id: ObjectId;
+  users: ObjectId[];
+  items: ObjectId[];
 };
