@@ -1,8 +1,11 @@
 import React from 'react';
 import styles from './mainCard.module.css';
 import RatingDisplay from '../RatingDisplay/RatingDisplay';
+import type { ObjectId } from 'mongodb';
 
 export type mainCardProps = {
+  _id?: ObjectId;
+  ownerId?: ObjectId;
   imageSrc: string;
   ratingValue: number;
   ratingCondition: number;
