@@ -12,6 +12,7 @@ import type { Item, Proposal } from '../../../utils/types';
 function MainPage(): JSX.Element {
   const [ownItems, setOwnItems] = useState<Item[]>([]);
   const [otherItems, setOtherItems] = useState<Item[]>([]);
+  const [proposed, setProposed] = useState(false);
 
   async function fetchOwnItems(): Promise<void> {
     const response = await fetch('/api/items/currentuser');
@@ -28,7 +29,7 @@ function MainPage(): JSX.Element {
   useEffect(() => {
     fetchOwnItems();
     fetchOtherItems();
-  }, []);
+  }, [proposed]);
 
   async function handleClick() {
     const newProposal = {
@@ -46,6 +47,7 @@ function MainPage(): JSX.Element {
         },
         body: JSON.stringify(newProposal),
       });
+      setProposed(true);
     } else {
       const matchingProposal = existingProposals.find(
         (proposal) => proposal === newProposal
@@ -60,6 +62,7 @@ function MainPage(): JSX.Element {
           },
           body: JSON.stringify(newProposal),
         });
+        setProposed(true);
       } else {
         await fetch('api/proposals', {
           method: 'POST',
@@ -68,6 +71,7 @@ function MainPage(): JSX.Element {
           },
           body: JSON.stringify(newProposal),
         });
+        setProposed(true);
       }
     }
   }
@@ -85,6 +89,7 @@ function MainPage(): JSX.Element {
           >
             {ownItems.map((item) => (
               <MainCard
+                proposed={proposed}
                 type="own"
                 imageSrc={item.itemSrc}
                 ratingValue={item.valueInput}
@@ -104,6 +109,7 @@ function MainPage(): JSX.Element {
           >
             {otherItems.map((item) => (
               <MainCard
+                proposed={proposed}
                 type="other"
                 imageSrc={item.itemSrc}
                 ratingValue={item.valueInput}
