@@ -3,16 +3,64 @@ import dotenv from 'dotenv';
 dotenv.config();
 import { createUser } from './utils/users';
 import { addItem, getItems, getOwnItems } from './utils/items';
-import type { User, Item } from './utils/types';
+import type { User, Item, Proposal, Match } from './utils/types';
 import { connectDatabase } from './utils/database';
 import { getUser } from './utils/users';
 import cookieParser from 'cookie-parser';
+import {
+  createProposal,
+  getProposal,
+  deleteProposal,
+  getOwnProposals,
+} from './utils/proposals';
+import { createMatch, deleteMatch } from './utils/matches';
 
 const app = express();
 const port = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(cookieParser());
+
+app.get('/api/proposals/currentuser', async (req, res) => {
+  const userID = req.cookies.currentUser;
+  const items = await getOwnProposals(userID);
+  return res.status(200).send(items);
+});
+
+app.delete('/api/matches', async (req, res) => {
+  const { match } = req.body;
+  await deleteMatch(match);
+  res.send(200).send('Match deleted');
+});
+
+app.post('/api/matches', async (req, res) => {
+  const match: Match = req.body;
+  await createMatch(match);
+  return res.status(200).send(match);
+});
+
+app.delete('/api/proposals', async (req, res) => {
+  const { proposal } = req.body;
+  await deleteProposal(proposal);
+  res.send(200).send('Proposal deleted');
+});
+
+app.get('/api/proposals', async (req, res) => {
+  const { users, items } = req.body;
+  try {
+    const result = await getProposal(users, items);
+    res.status(200).json(result);
+  } catch (error) {
+    console.error(error);
+    res.status(404).send('No such proposal');
+  }
+});
+
+app.post('/api/proposals', async (req, res) => {
+  const proposal: Proposal = req.body;
+  await createProposal(proposal);
+  return res.status(200).send(proposal);
+});
 
 app.post('/api/users', async (req, res) => {
   const user: User = req.body;
@@ -31,14 +79,12 @@ app.post('/api/items', async (req, res) => {
 });
 
 app.get('/api/items/currentuser', async (req, res) => {
-  console.log('hallo1');
   const userID = req.cookies.currentUser;
   const items = await getOwnItems(userID);
   return res.status(200).send(items);
 });
 
 app.get('/api/items/otherusers', async (req, res) => {
-  console.log('hallo2');
   const userID = req.cookies.currentUser;
   const items = await getItems(userID);
   return res.status(200).send(items);
