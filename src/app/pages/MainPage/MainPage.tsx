@@ -7,7 +7,7 @@ import IconButton from '../../components/Buttons/IconButton';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
 import { useEffect, useState } from 'react';
-import type { Item } from '../../../utils/types';
+import type { Item, Proposal } from '../../../utils/types';
 
 function MainPage(): JSX.Element {
   const [ownItems, setOwnItems] = useState<Item[]>([]);
@@ -25,14 +25,42 @@ function MainPage(): JSX.Element {
     setOtherItems(otherItems);
   }
 
-  const handleClick = () => {
-    console.log('click');
-  };
-
   useEffect(() => {
     fetchOwnItems();
     fetchOtherItems();
   }, []);
+
+  async function handleClick() {
+    const newProposal = {
+      items: [ownItems[0]._id, otherItems[0]._id].sort(),
+      users: [ownItems[0].ownerId, otherItems[0].ownerId].sort(),
+    };
+
+    const response = await fetch('api/proposals');
+    const existingProposals: Proposal[] = await response.json();
+    const matchingProposal: Proposal | undefined = existingProposals.find(
+      (proposal) => proposal === newProposal
+    );
+
+    if (matchingProposal) {
+      await fetch(`api/proposals/delete/${matchingProposal}`);
+      await fetch('api/matches', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'applicatio/json',
+        },
+        body: JSON.stringify(newProposal),
+      });
+    } else {
+      await fetch('api/proposals', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(newProposal),
+      });
+    }
+  }
 
   return (
     <div className={styles.wrapper}>
