@@ -19,3 +19,8 @@ export async function getItems(owner: ObjectId): Promise<Item[]> {
   const items = getItemCollection();
   return await items.find({ ownerId: { $ne: owner } }).toArray();
 }
+
+export async function updateItem(id: ObjectId, item: Item): Promise<void> {
+  const items = getItemCollection();
+  await items.updateOne({ _id: id }, { $set: item });
+}
