@@ -7,73 +7,67 @@ import IconButton from '../../components/Buttons/IconButton';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
 import { useEffect, useState } from 'react';
-import type { Item, Proposal } from '../../../utils/types';
+import type { Item } from '../../../utils/types';
 
 function MainPage(): JSX.Element {
   const [ownItems, setOwnItems] = useState<Item[]>([]);
   const [otherItems, setOtherItems] = useState<Item[]>([]);
-  const [proposed, setProposed] = useState(false);
 
   async function fetchOwnItems(): Promise<void> {
     const response = await fetch('/api/items/currentuser');
-    const ownItems = await response.json();
+    const unfilteredOwnItems: Item[] = await response.json();
+    const ownItems = unfilteredOwnItems.filter(
+      (item) => item.proposed === false
+    );
     setOwnItems(ownItems);
   }
 
   async function fetchOtherItems(): Promise<void> {
     const response = await fetch('/api/items/otherusers');
-    const otherItems = await response.json();
+    const unfilteredOtherItems: Item[] = await response.json();
+    const otherItems = unfilteredOtherItems.filter(
+      (item) => item.proposed === false
+    );
     setOtherItems(otherItems);
   }
 
   useEffect(() => {
     fetchOwnItems();
     fetchOtherItems();
-  }, [proposed]);
+  }, []);
 
   async function handleClick() {
     const newProposal = {
       items: [ownItems[0]._id, otherItems[0]._id].sort(),
       users: [ownItems[0].ownerId, otherItems[0].ownerId].sort(),
     };
+    await fetch('/api/swap', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(newProposal),
+    });
 
-    const response = await fetch('api/proposals');
-    const existingProposals: Proposal[] = await response.json();
-    if (!existingProposals) {
-      await fetch('api/proposals', {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(newProposal),
-      });
-      setProposed(true);
-    } else {
-      const matchingProposal = existingProposals.find(
-        (proposal) => proposal === newProposal
-      );
-
-      if (matchingProposal) {
-        await fetch(`api/proposals/delete/${matchingProposal}`);
-        await fetch('api/matches', {
-          method: 'POST',
-          headers: {
-            'Content-type': 'applicatio/json',
-          },
-          body: JSON.stringify(newProposal),
-        });
-        setProposed(true);
-      } else {
-        await fetch('api/proposals', {
-          method: 'POST',
-          headers: {
-            'Content-type': 'application/json',
-          },
-          body: JSON.stringify(newProposal),
-        });
-        setProposed(true);
-      }
-    }
+    const updatedStatus: Item = {
+      _id: ownItems[0]._id,
+      ownerId: ownItems[0].ownerId,
+      itemName: ownItems[0].itemName,
+      valueInput: ownItems[0].valueInput,
+      conditionInput: ownItems[0].conditionInput,
+      description: ownItems[0].description,
+      itemSrc: ownItems[0].itemSrc,
+      proposed: true,
+    };
+    await fetch(`/api/items/:${updatedStatus._id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(updatedStatus),
+    });
+    fetchOwnItems();
+    fetchOtherItems();
   }
 
   return (
@@ -89,7 +83,6 @@ function MainPage(): JSX.Element {
           >
             {ownItems.map((item) => (
               <MainCard
-                proposed={proposed}
                 type="own"
                 imageSrc={item.itemSrc}
                 ratingValue={item.valueInput}
@@ -109,7 +102,6 @@ function MainPage(): JSX.Element {
           >
             {otherItems.map((item) => (
               <MainCard
-                proposed={proposed}
                 type="other"
                 imageSrc={item.itemSrc}
                 ratingValue={item.valueInput}

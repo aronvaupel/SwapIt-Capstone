@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
 import { createUser } from './utils/users';
-import { addItem, getItems, getOwnItems } from './utils/items';
+import { addItem, getItems, getOwnItems, updateItem } from './utils/items';
 import type { User, Item, Proposal, Match } from './utils/types';
 import { connectDatabase } from './utils/database';
 import { getUser } from './utils/users';
@@ -12,6 +12,7 @@ import {
   getProposal,
   deleteProposal,
   getOwnProposals,
+  readProposals,
 } from './utils/proposals';
 import { createMatch, deleteMatch } from './utils/matches';
 
@@ -20,6 +21,44 @@ const port = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(cookieParser());
+
+app.patch('/api/items/:_id', async (req, res) => {
+  const updatedItem = req.body;
+  await updateItem(updatedItem._id, updatedItem);
+  console.log('Item updated');
+  res.status(200).json(updatedItem);
+});
+
+app.post('/api/swap', async (req, res) => {
+  const newProposal = req.body;
+  const proposalArray = await readProposals();
+  console.log(proposalArray);
+  if (proposalArray.length === 0) {
+    await createProposal(newProposal);
+    console.log('No proposals, therefore created new proposal: ', newProposal);
+    return res.status(200).send('Proposal created');
+  } else {
+    const matchingProposal = proposalArray.find(
+      (proposal: Proposal) => proposal === newProposal
+    );
+    if (matchingProposal !== undefined) {
+      await deleteProposal(newProposal);
+      await createMatch(newProposal);
+      console.log(
+        'Matching proposal, therefore created new match: ',
+        newProposal
+      );
+      return res.status(200).send('Match created');
+    } else {
+      await createProposal(newProposal);
+      console.log(
+        'No matching proposal, therefore created new proposal:',
+        newProposal
+      );
+      return res.status(200).send('Proposal created');
+    }
+  }
+});
 
 app.get('/api/proposals/currentuser', async (req, res) => {
   const userID = req.cookies.currentUser;
