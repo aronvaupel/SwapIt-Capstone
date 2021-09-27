@@ -39,7 +39,9 @@ app.post('/api/swap', async (req, res) => {
     return res.status(200).send('Proposal created');
   } else {
     const matchingProposal = proposalArray.find(
-      (proposal: Proposal) => proposal === newProposal
+      (proposal: Proposal) =>
+        proposal.users.toString() === newProposal.users.toString() &&
+        proposal.items.toString() === newProposal.items.toString()
     );
     if (matchingProposal !== undefined) {
       await deleteProposal(newProposal);
