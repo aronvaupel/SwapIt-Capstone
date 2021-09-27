@@ -43,6 +43,7 @@ function AddPage(): JSX.Element {
       conditionInput: conditionInput,
       description: description,
       itemSrc: itemSrc,
+      proposed: false,
     };
     const response = await fetch('/api/items', {
       method: 'POST',
