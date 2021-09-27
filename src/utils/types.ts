@@ -4,7 +4,7 @@ export type DB = {
   users: User[];
 };
 export type User = {
-  _id?: ObjectId;
+  _id: ObjectId;
   username: string;
   phone: number;
   email: string;
@@ -12,14 +12,14 @@ export type User = {
 };
 
 export type Item = {
-  _id?: ObjectId;
+  _id: ObjectId;
   ownerId: ObjectId;
   itemName: string;
   valueInput: number;
   conditionInput: number;
   description: string;
   itemSrc: string;
-  proposed?: boolean;
+  proposed: boolean;
 };
 
 export type Proposal = {
