@@ -25,3 +25,8 @@ export async function getOwnProposals(owner: ObjectId): Promise<Proposal[]> {
   const items = getProposalCollection();
   return await items.find({ creator: owner }).toArray();
 }
+export async function readProposals(): Promise<Proposal[]> {
+  const proposalCollection = getProposalCollection();
+  const proposals = await proposalCollection.find().toArray();
+  return proposals;
+}
