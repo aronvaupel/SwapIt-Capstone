@@ -22,5 +22,5 @@ export async function getItems(owner: ObjectId): Promise<Item[]> {
 
 export async function updateItem(id: ObjectId, item: Item): Promise<void> {
   const items = getItemCollection();
-  await items.updateOne({ _id: id }, { $set: item });
+  await items.updateOne({ _id: id }, { $set: { item } });
 }
