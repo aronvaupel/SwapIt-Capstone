@@ -14,7 +14,8 @@ import {
   getOwnProposals,
   readProposals,
 } from './utils/proposals';
-import { createMatch, deleteMatch } from './utils/matches';
+import { createMatch, deleteMatch, getOwnMatches } from './utils/matches';
+import type { ObjectId } from 'bson';
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -24,21 +25,17 @@ app.use(cookieParser());
 
 app.patch('/api/items/update', async (req, res) => {
   const updatedItem = req.body;
-  await updateItem(
-    updatedItem._id,
-    updatedItem.proposed,
-    updatedItem.proposedBy
-  );
-  console.log('Item updated');
+  await updateItem(updatedItem._id, updatedItem.proposedBy);
   res.status(200).json(updatedItem);
 });
 
 app.post('/api/swap', async (req, res) => {
+  const userID = req.cookies.currentUser;
   const newProposal = req.body;
   const proposalArray = await readProposals();
   console.log(proposalArray);
   if (proposalArray.length === 0) {
-    await createProposal(newProposal);
+    await createProposal(newProposal, userID);
     console.log('No proposals, therefore created new proposal: ', newProposal);
     return res.status(200).send('Proposal created');
   } else {
@@ -56,7 +53,7 @@ app.post('/api/swap', async (req, res) => {
       );
       return res.status(200).send('Match created');
     } else {
-      await createProposal(newProposal);
+      await createProposal(newProposal, userID);
       console.log(
         'No matching proposal, therefore created new proposal:',
         newProposal
@@ -68,8 +65,14 @@ app.post('/api/swap', async (req, res) => {
 
 app.get('/api/proposals/currentuser', async (req, res) => {
   const userID = req.cookies.currentUser;
-  const items = await getOwnProposals(userID);
-  return res.status(200).send(items);
+  const proposals = await getOwnProposals(userID);
+  return res.status(200).send(proposals);
+});
+
+app.get('/api/matches/currentuser', async (req, res) => {
+  const userID = req.cookies.currentUser;
+  const matches = await getOwnMatches(userID);
+  return res.status(200).send(matches);
 });
 
 app.delete('/api/matches', async (req, res) => {
@@ -102,8 +105,9 @@ app.get('/api/proposals', async (req, res) => {
 });
 
 app.post('/api/proposals', async (req, res) => {
-  const proposal: Proposal = req.body;
-  await createProposal(proposal);
+  const userID = req.cookies.currentUser;
+  const proposal: Omit<Proposal, 'creator'> = req.body;
+  await createProposal(proposal, userID);
   return res.status(200).send(proposal);
 });
 
@@ -125,13 +129,21 @@ app.post('/api/items', async (req, res) => {
 
 app.get('/api/items/currentuser', async (req, res) => {
   const userID = req.cookies.currentUser;
-  const items = await getOwnItems(userID);
+  const formattedUserID: ObjectId = userID;
+  const unfilteredItems = await getOwnItems(userID);
+  const items = unfilteredItems.filter(
+    (item) => formattedUserID !== item.proposedBy
+  );
   return res.status(200).send(items);
 });
 
 app.get('/api/items/otherusers', async (req, res) => {
   const userID = req.cookies.currentUser;
-  const items = await getItems(userID);
+  const formattedUserID: ObjectId = userID;
+  const unfilteredItems = await getItems(userID);
+  const items = unfilteredItems.filter(
+    (item) => formattedUserID !== item.proposedBy
+  );
   return res.status(200).send(items);
 });
 
