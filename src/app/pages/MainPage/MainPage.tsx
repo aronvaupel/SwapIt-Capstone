@@ -17,7 +17,7 @@ function MainPage(): JSX.Element {
     const response = await fetch('/api/items/currentuser');
     const unfilteredOwnItems: Item[] = await response.json();
     const ownItems = unfilteredOwnItems.filter(
-      (item) => item.proposed === false
+      (item) => item.proposed === false || item.ownerId !== item.proposedBy
     );
     setOwnItems(ownItems);
   }
@@ -26,7 +26,7 @@ function MainPage(): JSX.Element {
     const response = await fetch('/api/items/otherusers');
     const unfilteredOtherItems: Item[] = await response.json();
     const otherItems = unfilteredOtherItems.filter(
-      (item) => item.proposed === false
+      (item) => item.proposed === false || item.ownerId !== item.proposedBy
     );
     setOtherItems(otherItems);
   }
@@ -52,8 +52,9 @@ function MainPage(): JSX.Element {
     const updatedStatus: Partial<Item> = {
       _id: ownItems[0]._id,
       proposed: true,
+      proposedBy: ownItems[0].ownerId,
     };
-    await fetch(`/api/items/:${updatedStatus._id}`, {
+    await fetch(`/api/items/update`, {
       method: 'PATCH',
       headers: {
         'Content-type': 'application/json',
@@ -64,8 +65,9 @@ function MainPage(): JSX.Element {
     const updatedOtherStatus: Partial<Item> = {
       _id: otherItems[0]._id,
       proposed: true,
+      proposedBy: ownItems[0].ownerId,
     };
-    await fetch(`/api/items/:${updatedOtherStatus._id}`, {
+    await fetch(`/api/items/update`, {
       method: 'PATCH',
       headers: {
         'Content-type': 'application/json',

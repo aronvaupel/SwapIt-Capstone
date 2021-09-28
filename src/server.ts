@@ -22,9 +22,13 @@ const port = process.env.PORT || 3001;
 app.use(express.json());
 app.use(cookieParser());
 
-app.patch('/api/items/:_id', async (req, res) => {
+app.patch('/api/items/update', async (req, res) => {
   const updatedItem = req.body;
-  await updateItem(updatedItem._id, updatedItem);
+  await updateItem(
+    updatedItem._id,
+    updatedItem.proposed,
+    updatedItem.proposedBy
+  );
   console.log('Item updated');
   res.status(200).json(updatedItem);
 });

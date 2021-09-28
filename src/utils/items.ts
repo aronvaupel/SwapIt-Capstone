@@ -20,7 +20,14 @@ export async function getItems(owner: ObjectId): Promise<Item[]> {
   return await items.find({ ownerId: { $ne: owner } }).toArray();
 }
 
-export async function updateItem(id: ObjectId, status: boolean): Promise<void> {
+export async function updateItem(
+  id: ObjectId,
+  status: boolean,
+  proposer: ObjectId
+): Promise<void> {
   const items = getItemCollection();
-  await items.updateOne({ _id: id }, { $set: { proposed: status } });
+  await items.updateOne(
+    { _id: id },
+    { $set: { proposed: status, proposedBy: proposer } }
+  );
 }
