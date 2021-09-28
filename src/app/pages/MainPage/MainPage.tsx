@@ -49,14 +49,8 @@ function MainPage(): JSX.Element {
       body: JSON.stringify(newProposal),
     });
 
-    const updatedStatus: Item = {
+    const updatedStatus: Partial<Item> = {
       _id: ownItems[0]._id,
-      ownerId: ownItems[0].ownerId,
-      itemName: ownItems[0].itemName,
-      valueInput: ownItems[0].valueInput,
-      conditionInput: ownItems[0].conditionInput,
-      description: ownItems[0].description,
-      itemSrc: ownItems[0].itemSrc,
       proposed: true,
     };
     await fetch(`/api/items/:${updatedStatus._id}`, {
@@ -66,6 +60,19 @@ function MainPage(): JSX.Element {
       },
       body: JSON.stringify(updatedStatus),
     });
+
+    const updatedOtherStatus: Partial<Item> = {
+      _id: otherItems[0]._id,
+      proposed: true,
+    };
+    await fetch(`/api/items/:${updatedOtherStatus._id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(updatedOtherStatus),
+    });
+
     fetchOwnItems();
     fetchOtherItems();
   }
