@@ -19,7 +19,7 @@ export type Item = {
   conditionInput: number;
   description: string;
   itemSrc: string;
-  proposed: boolean;
+  proposedBy: ObjectId;
 };
 
 export type Proposal = {
@@ -27,10 +27,14 @@ export type Proposal = {
   users: ObjectId[];
   items: ObjectId[];
   creator: ObjectId;
+  srcOwn: string;
+  srcOther: string;
 };
 
 export type Match = {
   _id: ObjectId;
   users: ObjectId[];
   items: ObjectId[];
+  srcOwn: string;
+  srcOther: string;
 };
