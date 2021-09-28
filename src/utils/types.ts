@@ -19,6 +19,7 @@ export type Item = {
   conditionInput: number;
   description: string;
   itemSrc: string;
+  proposed: boolean;
   proposedBy: ObjectId;
 };
 
