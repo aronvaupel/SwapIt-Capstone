@@ -41,10 +41,10 @@ function MainPage(): JSX.Element {
 
   async function handleClick() {
     const ownIndexString = localStorage.getItem('ownIndex');
-    const ownIndex = ownIndexString ? parseInt(ownIndexString) : 1;
+    const ownIndex = ownIndexString ? parseInt(ownIndexString) : 0;
 
     const otherIndexString = localStorage.getItem('otherIndex');
-    const otherIndex = otherIndexString ? parseInt(otherIndexString) : 1;
+    const otherIndex = otherIndexString ? parseInt(otherIndexString) : 0;
 
     const newProposal = {
       items: [ownItems[ownIndex]._id, otherItems[otherIndex]._id].sort(),
