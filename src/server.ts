@@ -43,7 +43,7 @@ app.post('/api/swap', async (req, res) => {
         proposal.users.toString() === newProposal.users.toString() &&
         proposal.items.toString() === newProposal.items.toString()
     );
-    if (matchingProposal !== undefined) {
+    if (matchingProposal) {
       await deleteProposal(newProposal);
       await createMatch(newProposal);
       console.log(
@@ -69,7 +69,7 @@ app.get('/api/proposals/currentuser', async (req, res) => {
 });
 
 app.delete('/api/matches', async (req, res) => {
-  const { match } = req.body;
+  const match = req.body;
   await deleteMatch(match);
   res.send(200).send('Match deleted');
 });
@@ -81,7 +81,7 @@ app.post('/api/matches', async (req, res) => {
 });
 
 app.delete('/api/proposals', async (req, res) => {
-  const { proposal } = req.body;
+  const proposal = req.body;
   await deleteProposal(proposal);
   res.send(200).send('Proposal deleted');
 });
