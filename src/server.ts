@@ -34,11 +34,12 @@ app.patch('/api/items/update', async (req, res) => {
 });
 
 app.post('/api/swap', async (req, res) => {
+  const userID = req.cookies.currentUser;
   const newProposal = req.body;
   const proposalArray = await readProposals();
   console.log(proposalArray);
   if (proposalArray.length === 0) {
-    await createProposal(newProposal);
+    await createProposal(newProposal, userID);
     console.log('No proposals, therefore created new proposal: ', newProposal);
     return res.status(200).send('Proposal created');
   } else {
@@ -56,7 +57,7 @@ app.post('/api/swap', async (req, res) => {
       );
       return res.status(200).send('Match created');
     } else {
-      await createProposal(newProposal);
+      await createProposal(newProposal, userID);
       console.log(
         'No matching proposal, therefore created new proposal:',
         newProposal
@@ -102,8 +103,9 @@ app.get('/api/proposals', async (req, res) => {
 });
 
 app.post('/api/proposals', async (req, res) => {
-  const proposal: Proposal = req.body;
-  await createProposal(proposal);
+  const userID = req.cookies.currentUser;
+  const proposal: Omit<Proposal, 'creator'> = req.body;
+  await createProposal(proposal, userID);
   return res.status(200).send(proposal);
 });
 
