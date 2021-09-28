@@ -1,34 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './MatchPage.module.css';
 import Header from '../../components/Header/Header';
 import Nav from '../../components/Nav/Nav';
 import MatchCard from '../../components/MatchCard/MatchCard';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
+import type { Match, Proposal } from '../../../utils/types';
 
 function MatchPage(): JSX.Element {
-  const mockupData = [
-    {
-      srcOwn: '1.jpg',
-      srcOther: '1.jpg',
-    },
-    {
-      srcOwn: '1.jpg',
-      srcOther: '1.jpg',
-    },
-    {
-      srcOwn: '1.jpg',
-      srcOther: '1.jpg',
-    },
-    {
-      srcOwn: '1.jpg',
-      srcOther: '1.jpg',
-    },
-    {
-      srcOwn: '1.jpg',
-      srcOther: '1.jpg',
-    },
-  ];
+  const [ownProposals, setOwnProposals] = useState<Proposal[]>([]);
+  const [ownMatches, setOwnMatches] = useState<Match[]>([]);
+
+  async function fetchOwnProposals(): Promise<void> {
+    const response = await fetch('/api/proposals/currentuser');
+    const ownProposals: Proposal[] = await response.json();
+    setOwnProposals(ownProposals);
+  }
+
+  async function fetchOwnMatches(): Promise<void> {
+    const response = await fetch('/api/matches/currentuser');
+    const ownMatches: Match[] = await response.json();
+    setOwnMatches(ownMatches);
+  }
+
+  useEffect(() => {
+    fetchOwnProposals();
+    fetchOwnMatches();
+  }, []);
 
   const handleClick = () => {
     console.log('click');
@@ -45,7 +43,7 @@ function MatchPage(): JSX.Element {
             showThumbs={false}
             className={styles.carousel}
           >
-            {mockupData.map((item) => (
+            {ownProposals.map((item) => (
               <div>
                 <MatchCard
                   type="proposal"
@@ -66,7 +64,7 @@ function MatchPage(): JSX.Element {
             showThumbs={false}
             className={styles.carousel}
           >
-            {mockupData.map((item) => (
+            {ownMatches.map((item) => (
               <div>
                 <MatchCard
                   type="accept"
