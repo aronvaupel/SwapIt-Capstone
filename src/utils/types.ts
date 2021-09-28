@@ -20,6 +20,7 @@ export type Item = {
   description: string;
   itemSrc: string;
   proposed: boolean;
+  proposedBy: ObjectId;
 };
 
 export type Proposal = {
