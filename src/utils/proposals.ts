@@ -2,9 +2,12 @@ import type { Proposal } from './types';
 import { getProposalCollection } from './database';
 import type { ObjectId } from 'mongodb';
 
-export async function createProposal(proposal: Proposal): Promise<void> {
+export async function createProposal(
+  proposal: Omit<Proposal, 'creator'>,
+  createdBy: ObjectId
+): Promise<void> {
   const proposals = getProposalCollection();
-  await proposals.insertOne(proposal);
+  await proposals.insertOne({ creator: createdBy, ...proposal });
 }
 
 export async function deleteProposal(proposal: Proposal): Promise<void> {
