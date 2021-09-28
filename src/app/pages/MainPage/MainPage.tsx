@@ -15,31 +15,45 @@ function MainPage(): JSX.Element {
 
   async function fetchOwnItems(): Promise<void> {
     const response = await fetch('/api/items/currentuser');
-    const unfilteredOwnItems: Item[] = await response.json();
-    const ownItems = unfilteredOwnItems.filter(
-      (item) => item.proposed === false || item.ownerId !== item.proposedBy
-    );
+    const ownItems: Item[] = await response.json();
     setOwnItems(ownItems);
   }
 
   async function fetchOtherItems(): Promise<void> {
     const response = await fetch('/api/items/otherusers');
-    const unfilteredOtherItems: Item[] = await response.json();
-    const otherItems = unfilteredOtherItems.filter(
-      (item) => item.proposed === false || item.ownerId !== item.proposedBy
-    );
+    const otherItems: Item[] = await response.json();
     setOtherItems(otherItems);
   }
 
   useEffect(() => {
     fetchOwnItems();
     fetchOtherItems();
+    localStorage.setItem('ownIndex', '0');
+    localStorage.setItem('otherIndex', '0');
   }, []);
 
+  function handleOwnChange(selectedIndex: number) {
+    localStorage.setItem('ownIndex', selectedIndex.toString());
+  }
+  function handleOtherChange(selectedIndex: number) {
+    localStorage.setItem('otherIndex', selectedIndex.toString());
+  }
+
   async function handleClick() {
+    const ownIndexString = localStorage.getItem('ownIndex');
+    const ownIndex = ownIndexString ? parseInt(ownIndexString) : 1;
+
+    const otherIndexString = localStorage.getItem('otherIndex');
+    const otherIndex = otherIndexString ? parseInt(otherIndexString) : 1;
+
     const newProposal = {
-      items: [ownItems[0]._id, otherItems[0]._id].sort(),
-      users: [ownItems[0].ownerId, otherItems[0].ownerId].sort(),
+      items: [ownItems[ownIndex]._id, otherItems[otherIndex]._id].sort(),
+      users: [
+        ownItems[ownIndex].ownerId,
+        otherItems[otherIndex].ownerId,
+      ].sort(),
+      srcOwn: ownItems[ownIndex].itemSrc,
+      srcOther: otherItems[otherIndex].itemSrc,
     };
     await fetch('/api/swap', {
       method: 'POST',
@@ -50,9 +64,8 @@ function MainPage(): JSX.Element {
     });
 
     const updatedStatus: Partial<Item> = {
-      _id: ownItems[0]._id,
-      proposed: true,
-      proposedBy: ownItems[0].ownerId,
+      _id: ownItems[ownIndex]._id,
+      proposedBy: ownItems[ownIndex].ownerId,
     };
     await fetch(`/api/items/update`, {
       method: 'PATCH',
@@ -63,9 +76,8 @@ function MainPage(): JSX.Element {
     });
 
     const updatedOtherStatus: Partial<Item> = {
-      _id: otherItems[0]._id,
-      proposed: true,
-      proposedBy: ownItems[0].ownerId,
+      _id: otherItems[otherIndex]._id,
+      proposedBy: ownItems[ownIndex].ownerId,
     };
     await fetch(`/api/items/update`, {
       method: 'PATCH',
@@ -77,6 +89,8 @@ function MainPage(): JSX.Element {
 
     fetchOwnItems();
     fetchOtherItems();
+    localStorage.setItem('ownIndex', '0');
+    localStorage.setItem('otherIndex', '0');
   }
 
   return (
@@ -86,6 +100,7 @@ function MainPage(): JSX.Element {
         <section className={styles.upper}>
           <p>Your offer</p>
           <Carousel
+            onChange={handleOwnChange}
             infiniteLoop={true}
             showThumbs={false}
             className={styles.carousel}
@@ -105,6 +120,7 @@ function MainPage(): JSX.Element {
         <section className={styles.lower}>
           <p>Somebody's offer</p>
           <Carousel
+            onChange={handleOtherChange}
             infiniteLoop={true}
             showThumbs={false}
             className={styles.carousel}
