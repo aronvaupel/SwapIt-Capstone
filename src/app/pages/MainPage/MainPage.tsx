@@ -105,8 +105,9 @@ function MainPage(): JSX.Element {
             showThumbs={false}
             className={styles.carousel}
           >
-            {ownItems.map((item) => (
+            {ownItems.map((item, i) => (
               <MainCard
+                key={i}
                 type="own"
                 imageSrc={item.itemSrc}
                 ratingValue={item.valueInput}
@@ -125,8 +126,9 @@ function MainPage(): JSX.Element {
             showThumbs={false}
             className={styles.carousel}
           >
-            {otherItems.map((item) => (
+            {otherItems.map((item, i) => (
               <MainCard
+                key={i}
                 type="other"
                 imageSrc={item.itemSrc}
                 ratingValue={item.valueInput}
