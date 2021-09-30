@@ -1,7 +1,7 @@
 .wrapper {
   height: 100vh;
   display: grid;
-  grid-template-rows: 10% 1fr 10%;
+  grid-template-rows: 10% 80% 10%;
 }
 
 .mainWrapper {
@@ -23,22 +23,16 @@ h2 {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  height: 100%;
   margin: 0.25rem;
+  margin-bottom: 1rem;
 }
 
 .upper {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  height: 100%;
   margin: 0.25rem;
-}
-
-.separationLine {
-  height: 1px;
-  width: 100%;
-  border: 1px solid var(--clr-text-secondary);
+  margin-top: 1rem;
 }
 
 .carousel {

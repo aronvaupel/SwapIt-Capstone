@@ -117,7 +117,7 @@ function MainPage(): JSX.Element {
             ))}
           </Carousel>
         </section>
-        <div className={styles.separationLine}></div>
+
         <section className={styles.lower}>
           <p>Somebody's offer</p>
           <Carousel

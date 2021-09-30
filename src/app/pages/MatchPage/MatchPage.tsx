@@ -15,12 +15,14 @@ function MatchPage(): JSX.Element {
     const response = await fetch('/api/proposals/currentuser');
     const ownProposals: Proposal[] = await response.json();
     setOwnProposals(ownProposals);
+    console.log(ownProposals);
   }
 
   async function fetchOwnMatches(): Promise<void> {
     const response = await fetch('/api/matches/currentuser');
     const ownMatches: Match[] = await response.json();
     setOwnMatches(ownMatches);
+    console.log(ownMatches);
   }
 
   useEffect(() => {
@@ -43,20 +45,21 @@ function MatchPage(): JSX.Element {
             showThumbs={false}
             className={styles.carousel}
           >
-            {ownProposals.map((item) => (
+            {ownProposals.map((proposal, i) => (
               <div>
                 <MatchCard
+                  key={i}
                   type="proposal"
-                  imageSrcOwn={item.srcOwn}
-                  imageSrcOther={item.srcOther}
+                  imageSrcOwn={proposal.srcOwn}
+                  imageSrcOther={proposal.srcOther}
                   handleClick={handleClick}
-                  {...item}
+                  {...proposal}
                 />
               </div>
             ))}
           </Carousel>
         </section>
-        <div className={styles.separationLine}></div>
+
         <section className={styles.lower}>
           <h2>Swaps both sides agreed to</h2>
           <Carousel
@@ -64,14 +67,15 @@ function MatchPage(): JSX.Element {
             showThumbs={false}
             className={styles.carousel}
           >
-            {ownMatches.map((item) => (
+            {ownMatches.map((match, i) => (
               <div>
                 <MatchCard
+                  key={i}
                   type="accept"
-                  imageSrcOwn={item.srcOwn}
-                  imageSrcOther={item.srcOther}
+                  imageSrcOwn={match.srcOwn}
+                  imageSrcOther={match.srcOther}
                   handleClick={handleClick}
-                  {...item}
+                  {...match}
                 />
               </div>
             ))}
