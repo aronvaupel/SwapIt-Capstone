@@ -68,12 +68,14 @@ app.get('/api/proposals/currentuser', async (req, res) => {
   const userID = req.cookies.currentUser;
   const proposals = await getOwnProposals(userID);
   return res.status(200).send(proposals);
+  console.log(proposals);
 });
 
 app.get('/api/matches/currentuser', async (req, res) => {
   const userID = req.cookies.currentUser;
   const matches = await getOwnMatches(userID);
   return res.status(200).send(matches);
+  console.log(matches);
 });
 
 app.delete('/api/matches', async (req, res) => {
