@@ -2,17 +2,115 @@ import express from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
 import { createUser } from './utils/users';
-import { addItem, getItems, getOwnItems } from './utils/items';
-import type { User, Item } from './utils/types';
+import { addItem, getItems, getOwnItems, updateItem } from './utils/items';
+import type { User, Item, Proposal, Match } from './utils/types';
 import { connectDatabase } from './utils/database';
 import { getUser } from './utils/users';
 import cookieParser from 'cookie-parser';
+import {
+  createProposal,
+  getProposal,
+  deleteProposal,
+  getOwnProposals,
+  readProposals,
+} from './utils/proposals';
+import { createMatch, deleteMatch, getOwnMatches } from './utils/matches';
+import type { ObjectId } from 'bson';
 
 const app = express();
 const port = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(cookieParser());
+
+app.patch('/api/items/update', async (req, res) => {
+  const updatedItem = req.body;
+  await updateItem(updatedItem._id, updatedItem.proposedBy);
+  res.status(200).json(updatedItem);
+});
+
+app.post('/api/swap', async (req, res) => {
+  const userID = req.cookies.currentUser;
+  const newProposal = req.body;
+  const proposalArray = await readProposals();
+  console.log(proposalArray);
+  if (proposalArray.length === 0) {
+    await createProposal(newProposal, userID);
+    console.log('No proposals, therefore created new proposal: ', newProposal);
+    return res.status(200).send('Proposal created');
+  } else {
+    const matchingProposal = proposalArray.find(
+      (proposal: Proposal) =>
+        proposal.users.toString() === newProposal.users.toString() &&
+        proposal.items.toString() === newProposal.items.toString()
+    );
+    if (matchingProposal) {
+      await deleteProposal(matchingProposal);
+      console.log('Matching proposal, therefore delete Proposal');
+      await createMatch(newProposal);
+      console.log(
+        'Matching proposal, therefore created new match: ',
+        newProposal
+      );
+      return res.status(200).send('Match created');
+    } else {
+      await createProposal(newProposal, userID);
+      console.log(
+        'No matching proposal, therefore created new proposal:',
+        newProposal
+      );
+      return res.status(200).send('Proposal created');
+    }
+  }
+});
+
+app.get('/api/proposals/currentuser', async (req, res) => {
+  const userID = req.cookies.currentUser;
+  const proposals = await getOwnProposals(userID);
+  return res.status(200).send(proposals);
+});
+
+app.get('/api/matches/currentuser', async (req, res) => {
+  const userID = req.cookies.currentUser;
+  const matches = await getOwnMatches(userID);
+  return res.status(200).send(matches);
+});
+
+app.delete('/api/matches', async (req, res) => {
+  const match = req.body;
+  await deleteMatch(match);
+  res.send(200).send('Match deleted');
+});
+
+app.post('/api/matches', async (req, res) => {
+  const match: Match = req.body;
+  await createMatch(match);
+  return res.status(200).send(match);
+});
+
+app.delete('/api/proposals', async (req, res) => {
+  const proposal = req.body;
+  await deleteProposal(proposal);
+  res.send(200).send('Proposal deleted');
+});
+
+app.get('/api/proposals', async (req, res) => {
+  const { users, items } = req.body;
+  try {
+    const result = await getProposal(users, items);
+    res.status(200).json(result);
+  } catch (error) {
+    console.error(error);
+    res.status(404).send('No such proposal');
+  }
+});
+
+app.post('/api/proposals', async (req, res) => {
+  const userID = req.cookies.currentUser;
+  const proposal: Omit<Proposal, 'creator'> = req.body;
+  await createProposal(proposal, userID);
+  return res.status(200).send(proposal);
+});
 
 app.post('/api/users', async (req, res) => {
   const user: User = req.body;
@@ -31,16 +129,22 @@ app.post('/api/items', async (req, res) => {
 });
 
 app.get('/api/items/currentuser', async (req, res) => {
-  console.log('hallo1');
   const userID = req.cookies.currentUser;
-  const items = await getOwnItems(userID);
+  const formattedUserID: ObjectId = userID;
+  const unfilteredItems = await getOwnItems(userID);
+  const items = unfilteredItems.filter(
+    (item) => formattedUserID !== item.proposedBy
+  );
   return res.status(200).send(items);
 });
 
 app.get('/api/items/otherusers', async (req, res) => {
-  console.log('hallo2');
   const userID = req.cookies.currentUser;
-  const items = await getItems(userID);
+  const formattedUserID: ObjectId = userID;
+  const unfilteredItems = await getItems(userID);
+  const items = unfilteredItems.filter(
+    (item) => formattedUserID !== item.proposedBy
+  );
   return res.status(200).send(items);
 });
 
