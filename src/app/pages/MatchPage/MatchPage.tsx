@@ -59,7 +59,7 @@ function MatchPage(): JSX.Element {
             ))}
           </Carousel>
         </section>
-        <div className={styles.separationLine}></div>
+
         <section className={styles.lower}>
           <h2>Swaps both sides agreed to</h2>
           <Carousel
