@@ -45,7 +45,8 @@ app.post('/api/swap', async (req, res) => {
         proposal.items.toString() === newProposal.items.toString()
     );
     if (matchingProposal) {
-      await deleteProposal(newProposal);
+      await deleteProposal(matchingProposal);
+      console.log('Matching proposal, therefore delete Proposal');
       await createMatch(newProposal);
       console.log(
         'Matching proposal, therefore created new match: ',
