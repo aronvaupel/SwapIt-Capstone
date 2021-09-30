@@ -14,5 +14,5 @@ export async function deleteMatch(match: Match): Promise<void> {
 
 export async function getOwnMatches(user: ObjectId): Promise<Match[]> {
   const matches = getMatchCollection();
-  return await matches.find({ users: [{ $in: user }] }).toArray();
+  return await matches.find({ users: [{ $in: { user } }] }).toArray();
 }
