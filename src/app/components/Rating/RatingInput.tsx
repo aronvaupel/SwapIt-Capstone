@@ -15,13 +15,17 @@ const RatingInput = ({
   onValueClick,
 }: RatingInputProps): JSX.Element => {
   return (
-    <div className="ratingWrapper">
+    <div>
       <div className={styles.headlineWrapper}>
-        {type === 'value' ? <ValueIcon /> : <ConditionIcon />}
-        <p className="headline">{type === 'value' ? 'Value' : 'Condition'}</p>
+        <p className={styles.headline}>
+          {type === 'value' ? 'Value' : 'Condition'}
+        </p>
       </div>
 
       <div className={styles.ratingBox}>
+        <div className={styles.iconWrapper}>
+          {type === 'value' ? <ValueIcon /> : <ConditionIcon />}
+        </div>
         <div className={styles.rating}>
           <label>
             {type === 'value' ? '0-50€' : 'needs repair'}

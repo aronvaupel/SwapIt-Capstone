@@ -18,7 +18,6 @@
   height: auto;
   display: flex;
   align-items: center;
-  font-size: 0.8rem;
 }
 .rating {
   font-size: 0.5rem;
@@ -53,6 +52,12 @@ input[type='radio'] {
   padding: 2%;
 }
 
-p {
+.headline {
   margin: 0;
+  color: var(--clr-text);
+  font-size: 0.8rem;
+}
+.iconWrapper {
+  margin-right: 0.5rem;
+  padding-top: 0.5rem;
 }
