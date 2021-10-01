@@ -11,6 +11,7 @@
   padding: 1rem;
   align-items: center;
   position: relative;
+  align-self: center;
 }
 
 p {
@@ -21,8 +22,8 @@ p {
 }
 
 .iconBackground {
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 3.8rem;
+  height: 3.8rem;
   border-radius: 100%;
   border: 1px solid var(--clr-text-secondary);
   background-color: var(--clr-background);
@@ -41,7 +42,6 @@ p {
   justify-content: center;
   flex-direction: column;
   margin: 0.25rem;
-  margin-bottom: 1rem;
 }
 
 .upper {
@@ -49,5 +49,4 @@ p {
   justify-content: center;
   flex-direction: column;
   margin: 0.25rem;
-  margin-top: 1rem;
 }

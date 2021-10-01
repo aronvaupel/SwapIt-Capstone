@@ -100,9 +100,11 @@ function MainPage(): JSX.Element {
         <section className={styles.upper}>
           <p>Your offer</p>
           <Carousel
+            showThumbs={false}
+            showIndicators={false}
             onChange={handleOwnChange}
             infiniteLoop={true}
-            showThumbs={false}
+            showStatus={false}
             className={styles.carousel}
           >
             {ownItems.map((item, i) => (
@@ -121,9 +123,11 @@ function MainPage(): JSX.Element {
         <section className={styles.lower}>
           <p>Somebody's offer</p>
           <Carousel
+            showThumbs={false}
+            showIndicators={false}
             onChange={handleOtherChange}
             infiniteLoop={true}
-            showThumbs={false}
+            showStatus={false}
             className={styles.carousel}
           >
             {otherItems.map((item, i) => (

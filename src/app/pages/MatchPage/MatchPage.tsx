@@ -41,8 +41,10 @@ function MatchPage(): JSX.Element {
         <section className={styles.upper}>
           <h2>Swaps you proposed</h2>
           <Carousel
+            showIndicators={false}
             infiniteLoop={true}
             showThumbs={false}
+            showStatus={false}
             className={styles.carousel}
           >
             {ownProposals.map((proposal, i) => (
@@ -63,8 +65,10 @@ function MatchPage(): JSX.Element {
         <section className={styles.lower}>
           <h2>Swaps both sides agreed to</h2>
           <Carousel
+            showIndicators={false}
             infiniteLoop={true}
             showThumbs={false}
+            showStatus={false}
             className={styles.carousel}
           >
             {ownMatches.map((match, i) => (

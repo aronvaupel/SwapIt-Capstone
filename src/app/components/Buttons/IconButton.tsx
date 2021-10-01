@@ -21,7 +21,10 @@ const IconButton = ({
       iconType !== 'mail' && iconType !== 'call'
         ? 'var(--clr-accent)'
         : 'var(--clr-high)',
-    stroke: 'var(--clr-accent)',
+    stroke:
+      iconType !== 'mail' && iconType !== 'call'
+        ? 'var(--clr-accent)'
+        : 'var(--clr-high)',
   };
 
   const inactive = {
